@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">391</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">392</span>Reading time: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -402,13 +402,13 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <p>记计算机学院2019年暑期信息安全培训(一下内容在BXS Team 的基础上加上自己的理解整理，感谢培训的带牢)</p>
-<h3 id="一、PHP反序列化的基础："><a href="#一、PHP反序列化的基础：" class="headerlink" title="一、PHP反序列化的基础："></a>一、PHP反序列化的基础：</h3><p>1.serialization &amp; deserialization<br>Serialization is a mechanism of converting the state of an object into a byte stream.<br>De-Serialization is the reverse process where the byte stream is used to recreate the actual object in memory.<br>This mechanism is used to persist the object.<br><img src="/img/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.png" alt="php反序列化"></p>
+<h3 id="一、PHP反序列化的基础："><a href="#一、PHP反序列化的基础：" class="headerlink" title="一、PHP反序列化的基础："></a>一、PHP反序列化的基础：</h3><p>1.serialization &amp; deserialization<br>Serialization is a mechanism of converting the state of an object into a byte stream.<br>De-Serialization is the reverse process where the byte stream is used to recreate the actual object in memory.<br>This mechanism is used to persist the object.<br><img src="%22/img/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.png%22" alt="php反序列化"></p>
 <p>Advantages of Serialization:</p>
 <blockquote>
 <p>To save/persist state of an object<br>To travel an object across a network</p>
 </blockquote>
-<p><img src="/img/php%E5%BA%8F%E5%88%97%E5%8C%96.png" alt="php序列化"></p>
-<p>2.serialize() &amp; unserialize()<br>序列化对象<br><img src="C:%5CUsers%5Cmx%5CDesktop%5CGun'sblog%5Cthemes%5Caria%5Csource%5Cimg%5Cphp%E5%BA%8F%E5%88%97%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.png" alt="php序列与反序列化"><br><img src="C:%5CUsers%5Cmx%5CDesktop%5CGun'sblog%5Cthemes%5Caria%5Csource%5Cimg%5C%E5%BA%8F%E5%88%97%E5%8C%96%E8%BE%93%E5%87%BA.png" alt="序列化输出"></p>
+<p><img src="%22/img/php%E5%BA%8F%E5%88%97%E5%8C%96.png%22" alt="php序列化"></p>
+<p>2.serialize() &amp; unserialize()<br>序列化对象<br><img src="%22/img/php%E5%BA%8F%E5%88%97%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.png%22" alt="php序列与反序列化"><br><img src="%22/img/%E5%BA%8F%E5%88%97%E5%8C%96%E8%BE%93%E5%87%BA.png%22" alt="序列化输出"></p>
 <ul>
 <li>在会话中存放对象</li>
 <li><code>serialize()</code>    //Object → String</li>
@@ -424,9 +424,7 @@ height:50vh;
 <li><code>Araay</code>: a:size:{key definition;value definition;(repeated per element)}</li>
 <li><code>Object</code>: O:strlen(object name):object name:object size:{s:strlen(property name):property name:property definition;(repeated per property)}</li>
 </ul>
-<p>3.Magic Methods<br><img src="C:%5CUsers%5Cmx%5CDesktop%5CGun'sblog%5Cthemes%5Caria%5Csource%5Cimg%5Cmagic-function%E9%AA%8C%E8%AF%81.png!%5Bmagic-function%E9%AA%8C%E8%AF%81%5D(C:%5CUsers%5Cmx%5CDesktop%5CGun'sblog%5Cthemes%5Caria%5Csource%5Cimg%5Cmagic-function%E9%AA%8C%E8%AF%81.pnga.%60sleep(" alt="magic-function验证"><code>:函数原型:</code>public __sleep ( void ) : array<code>对象被序列化之前触发，返回需要被序列化存储的成员属性数组，删除不必要的属性。
-b.</code>wakeup()<code>:函数原型:</code>_wakeup ( void ) : void<code>预先准备对象资源，返回void，常用于反序列化操作中重新建立数据库连接或执行其他初始化操作。
-c.</code>toString()<code>:函数原型:</code>public __toString ( void ) : string<code>toString()方法用于一个类被当成字符串时应怎样回应。例如</code>echo $obj<code>; 应该显示些什么。此方法必须返回一个字符串，否则将发出一条</code>E_RECOVERABLE_ERROR` 级别的致命错误。<br><img src="/img/Magic-function.png" alt="Magic-function"><br><img src="C:%5CUsers%5Cmx%5CDesktop%5CGun'sblog%5Cthemes%5Caria%5Csource%5Cimg%5C%E5%88%97%E5%AD%90.png" alt="列子"><br><img src="C:%5CUsers%5Cmx%5CDesktop%5CGun'sblog%5Cthemes%5Caria%5Csource%5Cimg%5Cmagic-function%E9%AA%8C%E8%AF%81.png" alt="magic-function验证"><br><img src="C:%5CUsers%5Cmx%5CDesktop%5CGun'sblog%5Cthemes%5Caria%5Csource%5Cimg%5Cmagic-function%E5%AE%9E%E5%88%97.png" alt="magic-function实列"><br><img src="C:%5CUsers%5Cmx%5CDesktop%5CGun'sblog%5Cthemes%5Caria%5Csource%5Cimg%5Cmagic.png" alt="magic"></p>
+<p>3.Magic Methods<br><img src="%22/img%5Cmagic-function%E9%AA%8C%E8%AF%81.png%22" alt="magic-function验证"><br><img src="%22/img/magic-function%E9%AA%8C%E8%AF%81.png%22" alt="magic-function验证"><br>a.<code>sleep()</code>:函数原型:<code>public __sleep ( void ) : array</code><br>对象被序列化之前触发，返回需要被序列化存储的成员属性数组，删除不必要的属性。<br>b.<code>wakeup()</code>:函数原型:<code>_wakeup ( void ) : void</code><br>预先准备对象资源，返回void，常用于反序列化操作中重新建立数据库连接或执行其他初始化操作。<br>c.<code>toString()</code>:函数原型:<code>public __toString ( void ) : string</code><br>toString()方法用于一个类被当成字符串时应怎样回应。例如 <code>echo $obj</code>; 应该显示些什么。此方法必须返回一个字符串，否则将发出一条 <code>E_RECOVERABLE_ERROR</code> 级别的致命错误。<br><img src="%22/img/Magic-function.png%22" alt="Magic-function"><br><img src="%22/img/%E5%88%97%E5%AD%90.png%22" alt="列子"><br><img src="%22/img/magic-function%E9%AA%8C%E8%AF%81.png%22" alt="magic-function验证"><br><img src="%22/img/magic-function%E5%AE%9E%E5%88%97.png%22" alt="magic-function实列"><br><img src="%22/img/magic.png%22" alt="magic"></p>
 <p>4.Demo</p>
 
     </article>
@@ -436,7 +434,7 @@ c.</code>toString()<code>:函数原型:</code>public __toString ( void ) : strin
             <p>Author：<a href="http://yoursite.com">菠萝吹雪</a>
             <p>原文链接：<a href="http://yoursite.com/2019/08/21/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80/">http://yoursite.com/2019/08/21/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80/</a>
             <p>发表日期：<a href="http://yoursite.com/2019/08/21/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80/">August 21st 2019, 8:43:21 am</a>
-            <p>更新日期：<a href="http://yoursite.com/2019/08/21/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80/">August 22nd 2019, 10:48:58 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/08/21/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80/">October 18th 2019, 9:14:28 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -829,23 +827,21 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="android 开发"><span class="iconfont-archer">&#xe606;</span>android 开发</span>
+    
+        <span class="sidebar-tag-name" data-tags="AJAX"><span class="iconfont-archer">&#xe606;</span>AJAX</span>
+    
+        <span class="sidebar-tag-name" data-tags="linux命令集"><span class="iconfont-archer">&#xe606;</span>linux命令集</span>
+    
         <span class="sidebar-tag-name" data-tags="计算机"><span class="iconfont-archer">&#xe606;</span>计算机</span>
     
         <span class="sidebar-tag-name" data-tags="信息安全"><span class="iconfont-archer">&#xe606;</span>信息安全</span>
     
         <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
     
-        <span class="sidebar-tag-name" data-tags="android 开发"><span class="iconfont-archer">&#xe606;</span>android 开发</span>
-    
-        <span class="sidebar-tag-name" data-tags="VLC"><span class="iconfont-archer">&#xe606;</span>VLC</span>
-    
-        <span class="sidebar-tag-name" data-tags="linux命令集"><span class="iconfont-archer">&#xe606;</span>linux命令集</span>
-    
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
-        <span class="sidebar-tag-name" data-tags="AI"><span class="iconfont-archer">&#xe606;</span>AI</span>
-    
-        <span class="sidebar-tag-name" data-tags="多元线性回归"><span class="iconfont-archer">&#xe606;</span>多元线性回归</span>
+        <span class="sidebar-tag-name" data-tags="VLC"><span class="iconfont-archer">&#xe606;</span>VLC</span>
     
         <span class="sidebar-tag-name" data-tags="flask"><span class="iconfont-archer">&#xe606;</span>flask</span>
     
@@ -855,17 +851,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="post"><span class="iconfont-archer">&#xe606;</span>post</span>
     
-        <span class="sidebar-tag-name" data-tags="程序设计"><span class="iconfont-archer">&#xe606;</span>程序设计</span>
-    
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="writeup"><span class="iconfont-archer">&#xe606;</span>writeup</span>
     
+        <span class="sidebar-tag-name" data-tags="AI"><span class="iconfont-archer">&#xe606;</span>AI</span>
+    
+        <span class="sidebar-tag-name" data-tags="多元线性回归"><span class="iconfont-archer">&#xe606;</span>多元线性回归</span>
+    
         <span class="sidebar-tag-name" data-tags="编译技术"><span class="iconfont-archer">&#xe606;</span>编译技术</span>
     
-        <span class="sidebar-tag-name" data-tags="AJAX"><span class="iconfont-archer">&#xe606;</span>AJAX</span>
+        <span class="sidebar-tag-name" data-tags="程序设计"><span class="iconfont-archer">&#xe606;</span>程序设计</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -900,43 +898,43 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="计算机"><span class="iconfont-archer">&#xe60a;</span>计算机</span>
-    
         <span class="sidebar-category-name" data-categories="简单计算器开发"><span class="iconfont-archer">&#xe60a;</span>简单计算器开发</span>
-    
-        <span class="sidebar-category-name" data-categories="VLC"><span class="iconfont-archer">&#xe60a;</span>VLC</span>
-    
-        <span class="sidebar-category-name" data-categories="计算机/信息安全"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全</span>
-    
-        <span class="sidebar-category-name" data-categories="linux"><span class="iconfont-archer">&#xe60a;</span>linux</span>
-    
-        <span class="sidebar-category-name" data-categories="计算机/PHP"><span class="iconfont-archer">&#xe60a;</span>计算机/PHP</span>
-    
-        <span class="sidebar-category-name" data-categories="AI"><span class="iconfont-archer">&#xe60a;</span>AI</span>
-    
-        <span class="sidebar-category-name" data-categories="计算机/flask"><span class="iconfont-archer">&#xe60a;</span>计算机/flask</span>
-    
-        <span class="sidebar-category-name" data-categories="算法程序设计"><span class="iconfont-archer">&#xe60a;</span>算法程序设计</span>
-    
-        <span class="sidebar-category-name" data-categories="计算机/信息安全/Docker"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全/Docker</span>
-    
-        <span class="sidebar-category-name" data-categories="信息安全"><span class="iconfont-archer">&#xe60a;</span>信息安全</span>
-    
-        <span class="sidebar-category-name" data-categories="大三上学期课程"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程</span>
-    
-        <span class="sidebar-category-name" data-categories="linux/命令集"><span class="iconfont-archer">&#xe60a;</span>linux/命令集</span>
     
         <span class="sidebar-category-name" data-categories="基础知识"><span class="iconfont-archer">&#xe60a;</span>基础知识</span>
     
-        <span class="sidebar-category-name" data-categories="AI/多元线性回归"><span class="iconfont-archer">&#xe60a;</span>AI/多元线性回归</span>
+        <span class="sidebar-category-name" data-categories="linux"><span class="iconfont-archer">&#xe60a;</span>linux</span>
     
-        <span class="sidebar-category-name" data-categories="算法程序设计/计蒜客"><span class="iconfont-archer">&#xe60a;</span>算法程序设计/计蒜客</span>
+        <span class="sidebar-category-name" data-categories="计算机"><span class="iconfont-archer">&#xe60a;</span>计算机</span>
+    
+        <span class="sidebar-category-name" data-categories="基础知识/AJAX"><span class="iconfont-archer">&#xe60a;</span>基础知识/AJAX</span>
+    
+        <span class="sidebar-category-name" data-categories="VLC"><span class="iconfont-archer">&#xe60a;</span>VLC</span>
+    
+        <span class="sidebar-category-name" data-categories="linux/命令集"><span class="iconfont-archer">&#xe60a;</span>linux/命令集</span>
+    
+        <span class="sidebar-category-name" data-categories="信息安全"><span class="iconfont-archer">&#xe60a;</span>信息安全</span>
+    
+        <span class="sidebar-category-name" data-categories="AI"><span class="iconfont-archer">&#xe60a;</span>AI</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/信息安全"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全</span>
+    
+        <span class="sidebar-category-name" data-categories="大三上学期课程"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/PHP"><span class="iconfont-archer">&#xe60a;</span>计算机/PHP</span>
+    
+        <span class="sidebar-category-name" data-categories="算法程序设计"><span class="iconfont-archer">&#xe60a;</span>算法程序设计</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/flask"><span class="iconfont-archer">&#xe60a;</span>计算机/flask</span>
     
         <span class="sidebar-category-name" data-categories="信息安全/CTF"><span class="iconfont-archer">&#xe60a;</span>信息安全/CTF</span>
     
+        <span class="sidebar-category-name" data-categories="AI/多元线性回归"><span class="iconfont-archer">&#xe60a;</span>AI/多元线性回归</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/信息安全/Docker"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全/Docker</span>
+    
         <span class="sidebar-category-name" data-categories="大三上学期课程/编译技术"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程/编译技术</span>
     
-        <span class="sidebar-category-name" data-categories="基础知识/AJAX"><span class="iconfont-archer">&#xe60a;</span>基础知识/AJAX</span>
+        <span class="sidebar-category-name" data-categories="算法程序设计/计蒜客"><span class="iconfont-archer">&#xe60a;</span>算法程序设计/计蒜客</span>
     
         <span class="sidebar-category-name" data-categories="信息安全/CTF/web"><span class="iconfont-archer">&#xe60a;</span>信息安全/CTF/web</span>
     
