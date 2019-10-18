@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Gun&#39;s Blog</title>
+    <title>flask学习 · Gun&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Gun&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">flask学习</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Gun's Blog.</a>
 </header>
@@ -220,24 +231,80 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            flask学习
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "flask">flask</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "cookie">cookie</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "get">get</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "post">post</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">1.4k</span>Reading time: <span class="post-count reading-time">6 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/09</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,304 +405,87 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/22/%E8%AE%A1%E8%92%9C%E5%AE%A2/" >
-            
-                <span>计蒜客</span>
-        </a>
-        <div class="abstract-content">
-            An Olympian Math Problem123456789101112131415161718192021222324252627282930313233#include&lt;iostream&gt;using namespace std;int factorial(int k);int modulo(int s,int n);int main()&#123;    int t;    cin&gt;&gt;t;    while(t--)    &#123;        long n;        cin&gt;&gt;n;          int sum=0;    ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "程序设计">程序设计</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/22/AJAX/" >
-            
-                <span>AJAX</span>
-        </a>
-        <div class="abstract-content">
-            想挤时间把基础东西学一下，学了那么多，发现好多东西都有相通的地方.一下是参考一些大佬博客而根据自己的理解整理的笔记.AJAX利用一个构建到所有现代浏览器内部的对象-XMLHttpRequest-来实现发送和接收HTTP请求与响应信息。一个经由XMLHttpRequest对象发送的HTTP请求并不要求页面中拥有或回寄一个＜form＞元素。AJAX中的”A”代表了”异步”，这意味着XMLHttpRequest对象的send()方法可以立即返回，从而让Web页面上的其它HTML/JavaScript继续其浏览器端处理而由服务器处理HTTP请求并发送响应。尽管缺省情况下请求是异步进行的，但是，你...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "AJAX">AJAX</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%9B%86/" >
-            
-                <span>Linux常用命令集</span>
-        </a>
-        <div class="abstract-content">
-            一.文件管理:cat:params: -n -b -s -ve.g:cat -n file1&gt;file2:将file1的内容加上行号后输入到file2中cat -b file1 file2 &gt;&gt; file3:将file1和file2的内容加上行号后输入到file3中(空白行不显示)
+            <main class="main post-page">
+    <article class="article-entry">
+        <h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie:"></a>cookie:</h3><hr>
+<p>&ensp;&ensp; 因为 HTTP 协议是无状态的，即服务器不知道用户上一次做了什么，这严重阻碍了交互式 Web 应用程序的实现。在典型的网上购物场景中，用户浏览了几个页面，买了一盒饼干和两瓶饮料。最后结帐时，由于 HTTP 的无状态性，不通过额外的手段，服务器并不知道用户到底买了什么，所以 Cookie 就是用来绕开 HTTP 的无状态性的“额外手段”之一。服务器可以设置或读取 Cookies 中包含信息，借此维护用户跟服务器会话中的状态。<br>&ensp;&ensp; 在刚才的购物场景中，当用户选购了第一项商品，服务器在向用户发送网页的同时，还发送了一段 Cookie，记录着那项商品的信息。当用户访问另一个页面，浏览器会把 Cookie 发送给服务器，于是服务器知道他之前选购了什么。用户继续选购饮料，服务器就在原来那段 Cookie 里追加新的商品信息。结帐时，服务器读取发送来的 Cookie 就行了。<br>&ensp;&ensp;Cookie 另一个典型的应用是当登录一个网站时，网站往往会请求用户输入用户名和密码，并且用户可以勾选“下次自动登录”。如果勾选了，那么下次访问同一网站时，用户会发现没输入用户名和密码就已经登录了。这正是因为前一次登录时，服务器发送了包含登录凭据（用户名加密码的某种加密形式）的 Cookie 到用户的硬盘上。第二次登录时，如果该 Cookie 尚未到期，浏览器会发送该 Cookie，服务器验证凭据，于是不必输入用户名和密码就让用户登录了。</p>
+<h3 id="session"><a href="#session" class="headerlink" title="session:"></a>session:</h3><hr>
+<p>1.<code>session</code>介绍：session 与 cookie 的作用类似，都是为了存储用户相关信息，不同的是，cookie 是存储在本地浏览器，而 session 存储在服务器。存储在服务器的数据会更加安全，不容易窃取<br>2. 使用<code>session</code>的好处：</p>
+<blockquote>
+<p>敏感数据不直接发送给浏览器，而是发送回一个<code>session_id</code>，服务器将<code>session_id</code>与敏感数据做映射存储在<code>session</code>（存储在服务器中），更加安全。<br><code>session</code>可以设置过期时间，保证了用户的账号安全。</p>
+</blockquote>
+<hr>
+<h3 id="flask-中的-cookie-与-session-机制"><a href="#flask-中的-cookie-与-session-机制" class="headerlink" title="flask 中的 cookie 与 session 机制"></a>flask 中的 cookie 与 session 机制</h3><p>1.flask 中的 cookie 与 session 机制：把敏感数据经过加密后放入<code>session</code>中，然后再把<code>session</code>存放到<code>cookie</code>中 ，下次请求的时候，再从浏览器发送过来的<code>cookie</code>中读取<code>session</code>，然后再从<code>session</code>中读取敏感数据并进行解密，获取用户的数据。<br> 2.flask 的这种<code>session</code>机制可以节省服务器端的开销，因为把所有的信息都存储到了客户端。<br> 3. 安全是相对的，把<code>session</code>放到<code>cookie</code>中是比较安全的。</p>
+<h3 id="flask-中操作session"><a href="#flask-中操作session" class="headerlink" title="flask 中操作session"></a>flask 中操作<code>session</code></h3><hr>
+<p> 1.session 的操作方式：</p>
+<blockquote>
+<p><code>from flask import session</code>, 以后与<code>session</code>相关的操作都是通过<code>session</code>完成的。<br>使用<code>session</code>需要设置<code>SECRET_KEY</code>, 作为加密算法使用。并且<code>SECRET_KEY</code>的值在每次服务器启动只够都会变化。那么之前的<code>session</code>就不能通过当前的<code>session</code>值进行解密了。<br>操作<code>session</code>可以类似字典的操作。<br>添加<code>session</code>:<code>session[&#39;username&#39;]</code>。<br>删除<code>session</code>:<code>session.pop(&#39;username&#39;)</code>或者<code>del.session[&#39;uesrname&#39;]</code>。<br>彻底清空<code>session</code>:<code>session.clear()</code>。<br>获取<code>session</code>:<code>session.get(&#39;username&#39;)</code>。</p>
+</blockquote>
+<p> 2.例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,session</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">app=Flask(__name__)</span><br><span class="line">app.config[<span class="string">'SECRET_KEY'</span>]=os.urandom(<span class="number">24</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></span><br><span class="line">    session[<span class="string">'username'</span>]=<span class="string">'Gun'</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'hello word'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/get/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">()</span>:</span></span><br><span class="line">    print(session.get(<span class="string">'username'</span>))</span><br><span class="line">    <span class="keyword">return</span> session.get(<span class="string">'username'</span>)</span><br><span class="line"><span class="meta">@app.route('/delete')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">()</span>:</span></span><br><span class="line">    print(session.get(<span class="string">'username'</span>))</span><br><span class="line">    session.pop(<span class="string">'username'</span>)</span><br><span class="line">    print(session.get(<span class="string">'username'</span>))</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/clear')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clear</span><span class="params">()</span>:</span></span><br><span class="line">    print(session.get(<span class="string">'username'</span>))</span><br><span class="line">    session.clear()</span><br><span class="line">    print(session.get(<span class="string">'username'</span>))</span><br><span class="line">    print(<span class="string">"clear success"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    app.run(debug=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/06</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "linux命令集">linux命令集</a>
-    
-</div>
-            
-        </div>
+<h3 id="设置session的过期时间"><a href="#设置session的过期时间" class="headerlink" title="设置session的过期时间"></a>设置<code>session</code>的过期时间</h3><hr>
+<img src='/img/expired.png'>
+<img src='/img/permanent.png'>
+可以看出，如果没有设置`session`的到期时间，则默认浏览器关闭后到期。如果设置了`session.permanent=True`则有效期为一个月。
+<img src='/img/7 days.png'>
+如果想要自定义为其他的时间，则需要通过
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.config[&apos;PERMANENT_SESSION_LIFETIME&apos;]=timedelta(days=7)</span><br><span class="line">session.permanent=True</span><br></pre></td></tr></table></figure>
+### `get`请求和`post`请求
+----
+#### `get`请求：  
+  >使用场景：向服务器请求资源。
+  >传参：`get`请求的参数放在url中，并且通过`?key:value`的形式传入url中请求资源。 
+  >`get`请求是通过`flask.request.args`来获取。
+#### `post`请求：
+>使用场景:向指定的资源提交要被处理的数据
+>传参：通过`form  data`的形式发送给服务器
+>`post`请求是通过`flask.request.form`来获取
+>`post`请求和`get`请求在使用过程中应注意:
++ `input`标签中，应标明`name`属性以便后台获取`post`参数。
++  试图函数默认的请求方法为`GET`,所以在写`form`表单时,需要设置`method='POST'`。示例如下： 
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,url_for,render_template,request</span><br><span class="line">app=Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">'index.html'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/search/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">()</span>:</span></span><br><span class="line">    q=request.args.get(<span class="string">'q'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"用户查询的参数是：&#123;&#125;"</span>.format(q)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/login/',methods=['GET','POST'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method==<span class="string">'GET'</span>:</span><br><span class="line">        <span class="keyword">return</span> render_template(<span class="string">"login.html"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        username=request.form.get(<span class="string">"username"</span>)</span><br><span class="line">        password=request.form.get(<span class="string">"password"</span>)</span><br><span class="line">        print(username,password)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    app.run(debug=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+`login.html`文件：
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>login<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">            html,body&#123;</span><br><span class="line">            margin: 0;</span><br><span class="line">            height: 100%;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.header</span>&#123;</span></span><br><span class="line">            display: flex;</span><br><span class="line">            flex-direction: column;</span><br><span class="line">            justify-content: space-around;</span><br><span class="line">            &#125;</span><br><span class="line">            input&#123;</span><br><span class="line">            text-indent: 2em;</span><br><span class="line"><span class="css">            <span class="selector-tag">border</span><span class="selector-pseudo">:2px</span> <span class="selector-tag">solid</span> <span class="selector-tag">black</span>;</span></span><br><span class="line">            border-radius: 8px;</span><br><span class="line">            margin: 20px;</span><br><span class="line">            width: 40%;</span><br><span class="line">            height: 80px;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"header"</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">placeholder</span>=<span class="string">"请输入账户名："</span> <span class="attr">name</span>=<span class="string">"username"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">placeholder</span>=<span class="string">"请输入密码："</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">text-align</span>=<span class="string">"center"</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"登陆"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/01/VLC%E5%AD%A6%E4%B9%A0/" >
-            
-                <span>VLC学习</span>
-        </a>
-        <div class="abstract-content">
-            1.spectrum:光谱，波普2.emit:发射3.diodes:二极管4.sensitivity/[sensɪ’tɪvɪtɪ]:敏感5.spatial/[‘speɪʃ(ə)l] :空间的6.deployable:可扩展的7.luminaire:灯具，照明器；发光设备8.reliability:可靠性9.capacity:容量，能力，资格10.promising:有希望的11.lifespan:寿命,生命周期12.apparatus/[ˌæpəˈrætəs] :装置，设备，仪器13.rolling-shutter:滚动式帘子14.innovative:革新的，创新的15.blend:混...
+        <div class="license-wrapper">
+            <p>Author：<a href="http://yoursite.com">John Doe</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/08/09/flask/">http://yoursite.com/2019/08/09/flask/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/08/09/flask/">August 9th 2019, 2:49:37 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/08/09/flask/">August 22nd 2019, 7:09:52 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "VLC">VLC</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/29/%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/" >
-            
-                <span>编译技术</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "编译技术">编译技术</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/29/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" >
-            
-                <span>算法导论</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/29</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/29/Android%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" >
-            
-                <span>Android应用开发技术</span>
-        </a>
-        <div class="abstract-content">
-            1.首先用视图模式新建一个项目`Caculator’,下面是新建好的android目录结构:
-2.接下来是编写布局文件dispaly.xml:整体采用表格布局&lt;TableLayout&gt;&lt;/TableLayout&gt;6个&lt;TableRow&gt;&lt;/TableRow&gt;,并为所有的按钮增加唯一的id，以便设计监听事件时控制相应的控件，设计好的界面如图所示:dispaly.xml布局代码:
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "android 开发">android 开发</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/29/%E5%AE%9E%E7%94%A8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" >
-            
-                <span>实用优化算法</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/29</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/" >
-            
-                <span>攻防世界</span>
-        </a>
-        <div class="abstract-content">
-            1.题目地址：http://111.198.29.45:41645/  首先用GET方式提交一个名为a,值为1的变量–&gt;payload:?a=1返回:  再以POST方式提交一个b=2的变量.一开始有点懵，突然回忆起来曾经听过北理嵩天老师的《Python网络爬虫与信息提取》课程，写了一个简单的脚本输出了flag:
-1234import requestsvalue=&#123;'b':2&#125;demo=requests.post("http://111.198.29.45:41645/?a=1",value)print(demo.text)
-![GET-POST][“/CTF/...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "CTF">CTF</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "writeup">writeup</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/27/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/" >
-            
-                <span>机器学习--多元线性回归算法</span>
-        </a>
-        <div class="abstract-content">
-            一.预备知识：假定输入数据存放在矩阵X中，结果存放在向量y中：$$X=\begin{bmatrix}x_{11}&amp;x_{12}&amp;x_{13}\x_{21}&amp;x_{22}&amp;x_{23}\x_{31}&amp;x_{32}&amp;x_{33}\\end{bmatrix},y=\begin{bmatrix}y_1\y_2\y_3\\end{bmatrix}而回归系数放在w中
-w=\begin{bmatrix}w_1\w_2\w_3\\end{bmatrix}$$那么对于给定的数据x1，即矩阵X的第一列数据，预测结果u1将会通过如下公式给出：$$u1={\beg...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "AI">AI</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "多元线性回归">多元线性回归</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/08/20/Docker%E7%9A%84%E4%BD%BF%E7%94%A8/" title= "Docker的使用">
+                    <div class="nextTitle">Docker的使用</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &amp;#62;</a>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -720,6 +570,24 @@ w=\begin{bmatrix}w_1\w_2\w_3\\end{bmatrix}$$那么对于给定的数据x1，即�
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie"><span class="toc-number">1.</span> <span class="toc-text">cookie:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session"><span class="toc-number">2.</span> <span class="toc-text">session:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flask-中的-cookie-与-session-机制"><span class="toc-number">3.</span> <span class="toc-text">flask 中的 cookie 与 session 机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flask-中操作session"><span class="toc-number">4.</span> <span class="toc-text">flask 中操作session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置session的过期时间"><span class="toc-number">5.</span> <span class="toc-text">设置session的过期时间</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1115,6 +983,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

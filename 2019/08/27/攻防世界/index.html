@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Gun&#39;s Blog</title>
+    <title>攻防世界 · Gun&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Gun&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">攻防世界</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Gun's Blog.</a>
 </header>
@@ -220,24 +231,78 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            攻防世界
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "CTF">CTF</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "writeup">writeup</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">870</span>Reading time: <span class="post-count reading-time">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/27</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,304 +403,62 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/22/%E8%AE%A1%E8%92%9C%E5%AE%A2/" >
-            
-                <span>计蒜客</span>
-        </a>
-        <div class="abstract-content">
-            An Olympian Math Problem123456789101112131415161718192021222324252627282930313233#include&lt;iostream&gt;using namespace std;int factorial(int k);int modulo(int s,int n);int main()&#123;    int t;    cin&gt;&gt;t;    while(t--)    &#123;        long n;        cin&gt;&gt;n;          int sum=0;    ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "程序设计">程序设计</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/22/AJAX/" >
-            
-                <span>AJAX</span>
-        </a>
-        <div class="abstract-content">
-            想挤时间把基础东西学一下，学了那么多，发现好多东西都有相通的地方.一下是参考一些大佬博客而根据自己的理解整理的笔记.AJAX利用一个构建到所有现代浏览器内部的对象-XMLHttpRequest-来实现发送和接收HTTP请求与响应信息。一个经由XMLHttpRequest对象发送的HTTP请求并不要求页面中拥有或回寄一个＜form＞元素。AJAX中的”A”代表了”异步”，这意味着XMLHttpRequest对象的send()方法可以立即返回，从而让Web页面上的其它HTML/JavaScript继续其浏览器端处理而由服务器处理HTTP请求并发送响应。尽管缺省情况下请求是异步进行的，但是，你...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "AJAX">AJAX</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%9B%86/" >
-            
-                <span>Linux常用命令集</span>
-        </a>
-        <div class="abstract-content">
-            一.文件管理:cat:params: -n -b -s -ve.g:cat -n file1&gt;file2:将file1的内容加上行号后输入到file2中cat -b file1 file2 &gt;&gt; file3:将file1和file2的内容加上行号后输入到file3中(空白行不显示)
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>1.题目地址：<a href="http://111.198.29.45:41645/" target="_blank" rel="noopener">http://111.198.29.45:41645/</a><br>  首先用GET方式提交一个名为a,值为1的变量–&gt;<code>payload:?a=1</code>返回:<br>  再以POST方式提交一个b=2的变量.一开始有点懵，突然回忆起来曾经听过北理嵩天老师的《Python网络爬虫与信息提取》课程，写了一个简单的脚本输出了flag:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">value=&#123;<span class="string">'b'</span>:<span class="number">2</span>&#125;</span><br><span class="line">demo=requests.post(<span class="string">"http://111.198.29.45:41645/?a=1"</span>,value)</span><br><span class="line">print(demo.text)</span><br></pre></td></tr></table></figure>
+<p>![GET-POST][“/CTF/GET-POST.png”]</p>
+<p>2.题目:X老师上课讲了Robots协议，小宁同学却上课打了瞌睡，赶紧来教教小宁Robots协议是什么吧。<br>之前对robots协议不是理解的很透彻，谷歌查了一下robots协议，上面是这样描述的：<br>![robots协议][“/CTF/robots.png”]<br>瞬间知道第一步应该读取robots.txt里的内容，直接再地址栏后面跟上<code>/robots.txt</code>即可读取该文件里的内容，里面的内容是这样的:<br>![robots.txt][“/CTF/robots内容.png”]<br>看到这里一开始很迷惑，因为不是<code>.php</code>文件已经<code>disallow</code>了吗？在群里问了大佬，明白这只是一种道德规范(有一种此地无银三百两的意味~)在根目录下直接读取``f1ag_1s_h3re.php<code>文件，即可读到</code>flag`。</p>
+<p>3.题目：X老师忘记删除备份文件，他派小宁同学去把备份文件找出来,一起来帮小宁同学吧！<br>打开题目地址，看到你知道ndex.php的备份文件吗？有点懵，百度了备份文件，看到一些备份文件的扩展名，输入/index.php.bak试一下，提示下载文件，将源码下载下来之后用sublime Text打开，即可得到flag.</p>
+<p>4.题目:X老师告诉小宁其实xff和referer是可以伪造的。<br>打开网址，看到”ip地址必须为123.123.123.123”,再根据题目的提示”xff referer”必应<code>xff</code>了解到:<code>X-Forwarded-For（XFF）</code>是用来识别通过HTTP代理或负载均衡方式连接到Web服务器的客户端最原始的IP地址的HTTP请求头字段。使用bp抓包，在请求包中添加<code>X-Forwarded-For</code>字段，值为:123.123.123.123，发包，返回一个页面，连接必须来自<code>https://www.google.com</code>,<code>Bing</code>一下<code>Referer</code>：当用户在浏览器上点击一个链接时，会产生一个 HTTP 请求，用于获取新的页面内容，而在该请求的报头中，会包含一个 Referrer，用以指定该请求是从哪个页面跳转页来的，常被用于分析用户来源等信息。但是也有成为用户的一个不安全因素，比如有些网站直接将 sessionid 或是 token 放在地址栏里传递的，会原样不动地当作 Referrer 报头的内容传递给第三方网站。<br>所以就有了 Referrer Policy，用于过滤 Referrer 报头内容，目前是一个候选标准，不过已经有部分浏览器支持该标准。使用bp添加一个字段为<code>Referer:https://www.google.com</code>发包，则拿到<code>flag</code>.</p>
+<p>5.题目:小宁听说php是最好的语言,于是她简单学习之后写了几行php代码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">"config.php"</span>);</span><br><span class="line">$a=@$_GET[<span class="string">'a'</span>];</span><br><span class="line">$b=@$_GET[<span class="string">'b'</span>];</span><br><span class="line"><span class="keyword">if</span>($a==<span class="number">0</span> <span class="keyword">and</span> $a)&#123;</span><br><span class="line">    <span class="keyword">echo</span> $flag1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(is_numeric($b))&#123;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>($b&gt;<span class="number">1234</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> $flag2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以看出:这应该是php的弱类型造成的==绕过，我构造的payload是:<code>?a=0s&amp;b=12345s</code>即输出flag.</p>
 
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/06</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "linux命令集">linux命令集</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/01/VLC%E5%AD%A6%E4%B9%A0/" >
-            
-                <span>VLC学习</span>
-        </a>
-        <div class="abstract-content">
-            1.spectrum:光谱，波普2.emit:发射3.diodes:二极管4.sensitivity/[sensɪ’tɪvɪtɪ]:敏感5.spatial/[‘speɪʃ(ə)l] :空间的6.deployable:可扩展的7.luminaire:灯具，照明器；发光设备8.reliability:可靠性9.capacity:容量，能力，资格10.promising:有希望的11.lifespan:寿命,生命周期12.apparatus/[ˌæpəˈrætəs] :装置，设备，仪器13.rolling-shutter:滚动式帘子14.innovative:革新的，创新的15.blend:混...
+        <div class="license-wrapper">
+            <p>Author：<a href="http://yoursite.com">John Doe</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/08/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/">http://yoursite.com/2019/08/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/08/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/">August 27th 2019, 7:17:16 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/08/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/">September 21st 2019, 8:58:12 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "VLC">VLC</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/29/%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/" >
-            
-                <span>编译技术</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "编译技术">编译技术</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/29/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" >
-            
-                <span>算法导论</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/29</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/29/Android%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" >
-            
-                <span>Android应用开发技术</span>
-        </a>
-        <div class="abstract-content">
-            1.首先用视图模式新建一个项目`Caculator’,下面是新建好的android目录结构:
-2.接下来是编写布局文件dispaly.xml:整体采用表格布局&lt;TableLayout&gt;&lt;/TableLayout&gt;6个&lt;TableRow&gt;&lt;/TableRow&gt;,并为所有的按钮增加唯一的id，以便设计监听事件时控制相应的控件，设计好的界面如图所示:dispaly.xml布局代码:
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "android 开发">android 开发</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/29/%E5%AE%9E%E7%94%A8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" >
-            
-                <span>实用优化算法</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/29</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/" >
-            
-                <span>攻防世界</span>
-        </a>
-        <div class="abstract-content">
-            1.题目地址：http://111.198.29.45:41645/  首先用GET方式提交一个名为a,值为1的变量–&gt;payload:?a=1返回:  再以POST方式提交一个b=2的变量.一开始有点懵，突然回忆起来曾经听过北理嵩天老师的《Python网络爬虫与信息提取》课程，写了一个简单的脚本输出了flag:
-1234import requestsvalue=&#123;'b':2&#125;demo=requests.post("http://111.198.29.45:41645/?a=1",value)print(demo.text)
-![GET-POST][“/CTF/...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "CTF">CTF</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "web">web</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "writeup">writeup</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/27/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/" >
-            
-                <span>机器学习--多元线性回归算法</span>
-        </a>
-        <div class="abstract-content">
-            一.预备知识：假定输入数据存放在矩阵X中，结果存放在向量y中：$$X=\begin{bmatrix}x_{11}&amp;x_{12}&amp;x_{13}\x_{21}&amp;x_{22}&amp;x_{23}\x_{31}&amp;x_{32}&amp;x_{33}\\end{bmatrix},y=\begin{bmatrix}y_1\y_2\y_3\\end{bmatrix}而回归系数放在w中
-w=\begin{bmatrix}w_1\w_2\w_3\\end{bmatrix}$$那么对于给定的数据x1，即矩阵X的第一列数据，预测结果u1将会通过如下公式给出：$$u1={\beg...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "AI">AI</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "多元线性回归">多元线性回归</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/08/29/%E5%AE%9E%E7%94%A8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" title= "实用优化算法">
+                    <div class="nextTitle">实用优化算法</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/08/27/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/" title= "机器学习--多元线性回归算法">
+                    <div class="prevTitle">机器学习--多元线性回归算法</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &amp;#62;</a>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -720,6 +543,24 @@ w=\begin{bmatrix}w_1\w_2\w_3\\end{bmatrix}$$那么对于给定的数据x1，即�
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1115,6 +956,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

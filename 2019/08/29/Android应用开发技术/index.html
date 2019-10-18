@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="John Doe">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="John Doe">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>Android应用开发技术 · Gun&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Gun&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Android应用开发技术</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Gun's Blog.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            Android应用开发技术
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "android 开发">android 开发</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">2.2k</span>Reading time: <span class="post-count reading-time">12 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/08/29</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>1.首先用视图模式新建一个项目`Caculator’,下面是新建好的android目录结构:<br><img src="/img/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" alt="目录结构"></p>
+<p>2.接下来是编写布局文件<code>dispaly.xml</code>:<br>整体采用表格布局<code>&lt;TableLayout&gt;&lt;/TableLayout&gt;</code>6个<code>&lt;TableRow&gt;&lt;/TableRow&gt;</code>,并为所有的按钮增加唯一的<code>id</code>，以便设计监听事件时控制相应的控件，设计好的界面如图所示:<br><img src="/img/%E7%95%8C%E9%9D%A2.png" alt="界面"><br><code>dispaly.xml</code>布局代码:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">TableLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:stretchColumns</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TableRow</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"100sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:hint</span>=<span class="string">"请输入要计算的式子:"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">""</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/input"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">TableRow</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TableRow</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_column</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/bt1"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_column</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/bt2"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"3"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_column</span>=<span class="string">"2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/bt3"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_column</span>=<span class="string">"3"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"x"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"#ffffff"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/bt_mul"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">TableRow</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TableRow</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"4"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/bt4"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"5"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/bt5"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"6"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/bt6"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"#ffffff"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"+"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/bt_add"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">TableRow</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TableRow</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"7"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/bt7"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"8"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/bt8"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"9"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/bt9"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"#ffffff"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"-"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/bt_sub"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">TableRow</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TableRow</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"="</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"2"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/bt_equ"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/bt0"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"/"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"#ffffff"</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/bt_div"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">TableRow</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TableRow</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"清空"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"#ffffff"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/bt_clc"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"Del"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"#ffffff"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/bt_del"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">TableRow</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">TableLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>3.接下来是核心代码的编写:<br>思路：对所有的按钮进行监听，当点击的是0-9还有运算符时,在编辑框内显示按钮的文本内容，当点击按钮<code>=</code>时在编辑框内显示计算的结果.核心代码及注释如下所示:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> top.oriheart.caculator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Intent;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.util.Log;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.widget.Button;</span><br><span class="line"><span class="keyword">import</span> android.widget.EditText;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//使用OnClickListener接口，实现onClick方法.</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span> </span>&#123;</span><br><span class="line">    Button bt0, bt1, bt2, bt3, bt4, bt5, bt6, bt7, bt8, bt9, bt_add, bt_sub, bt_mul, bt_div, bt_clc, bt_del, bt_equ;</span><br><span class="line">    EditText input;</span><br><span class="line">    <span class="keyword">boolean</span> clc;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.display);</span><br><span class="line">        bt0 = findViewById(R.id.bt0);</span><br><span class="line">        bt1 = findViewById(R.id.bt1);</span><br><span class="line">        bt2 = findViewById(R.id.bt2);</span><br><span class="line">        bt3 = findViewById(R.id.bt3);</span><br><span class="line">        bt4 = findViewById(R.id.bt4);</span><br><span class="line">        bt5 = findViewById(R.id.bt5);</span><br><span class="line">        bt6 = findViewById(R.id.bt6);</span><br><span class="line">        bt7 = findViewById(R.id.bt7);</span><br><span class="line">        bt8 = findViewById(R.id.bt8);</span><br><span class="line">        bt9 = findViewById(R.id.bt9);</span><br><span class="line">        bt_add = findViewById(R.id.bt_add);</span><br><span class="line">        bt_sub = findViewById(R.id.bt_sub);</span><br><span class="line">        bt_mul = findViewById(R.id.bt_mul);</span><br><span class="line">        bt_div = findViewById(R.id.bt_div);</span><br><span class="line">        bt_clc = findViewById(R.id.bt_clc);</span><br><span class="line">        bt_del = findViewById(R.id.bt_del);</span><br><span class="line">        bt_equ = findViewById(R.id.bt_equ);</span><br><span class="line">        input  =  findViewById(R.id.input);</span><br><span class="line"></span><br><span class="line">        bt0.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt1.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt2.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt3.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt4.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt5.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt6.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt7.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt8.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt9.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt_add.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt_sub.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt_mul.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt_del.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt_equ.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt_clc.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt_del.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">        bt_div.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        String str = input.getText().toString(); <span class="comment">//当不加toString时报错</span></span><br><span class="line">        <span class="keyword">switch</span> (view.getId()) &#123;</span><br><span class="line">            <span class="keyword">case</span> R.id.bt0:</span><br><span class="line">            <span class="keyword">case</span> R.id.bt1:</span><br><span class="line">            <span class="keyword">case</span> R.id.bt2:</span><br><span class="line">            <span class="keyword">case</span> R.id.bt3:</span><br><span class="line">            <span class="keyword">case</span> R.id.bt4:</span><br><span class="line">            <span class="keyword">case</span> R.id.bt5:</span><br><span class="line">            <span class="keyword">case</span> R.id.bt6:</span><br><span class="line">            <span class="keyword">case</span> R.id.bt7:</span><br><span class="line">            <span class="keyword">case</span> R.id.bt8:</span><br><span class="line">            <span class="keyword">case</span> R.id.bt9:</span><br><span class="line">                <span class="keyword">if</span> (clc) &#123;</span><br><span class="line">                    clc = <span class="keyword">false</span>;</span><br><span class="line">                    str = <span class="string">""</span>;</span><br><span class="line">                    input.setText(<span class="string">""</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                input.setText(str + ((Button) view).getText());<span class="comment">//强制类型转换</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> R.id.bt_add:</span><br><span class="line">            <span class="keyword">case</span> R.id.bt_sub:</span><br><span class="line">            <span class="keyword">case</span> R.id.bt_mul:</span><br><span class="line">            <span class="keyword">case</span> R.id.bt_div:</span><br><span class="line">                <span class="keyword">if</span> (clc) &#123;</span><br><span class="line">                    clc = <span class="keyword">false</span>;</span><br><span class="line">                    str = <span class="string">""</span>;</span><br><span class="line">                    input.setText(<span class="string">""</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                input.setText(str + <span class="string">" "</span> + ((Button) view).getText() + <span class="string">" "</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> R.id.bt_del:</span><br><span class="line">                <span class="keyword">if</span> (clc) &#123;</span><br><span class="line">                    clc = <span class="keyword">false</span>;</span><br><span class="line">                    str = <span class="string">""</span>;</span><br><span class="line">                    input.setText(<span class="string">""</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (str != <span class="keyword">null</span> &amp;&amp; !str.equals(<span class="string">""</span>)) &#123;</span><br><span class="line">                    input.setText(str.substring(<span class="number">0</span>, str.length() - <span class="number">1</span>));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> R.id.bt_clc:</span><br><span class="line">                clc = <span class="keyword">false</span>;</span><br><span class="line">                str = <span class="string">""</span>;</span><br><span class="line">                input.setText(<span class="string">""</span>);</span><br><span class="line">            <span class="keyword">case</span> R.id.bt_equ:</span><br><span class="line">                result();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">result</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String expe = input.getText().toString();</span><br><span class="line">        <span class="keyword">if</span> (expe == <span class="keyword">null</span> || expe.equals(<span class="string">""</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!expe.contains(<span class="string">" "</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (clc) &#123;</span><br><span class="line">            clc = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        clc = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">double</span> result = <span class="number">0</span>;</span><br><span class="line">        String s1 = expe.substring(<span class="number">0</span>, expe.indexOf(<span class="string">" "</span>));</span><br><span class="line">        String op = expe.substring(expe.indexOf(<span class="string">" "</span>) + <span class="number">1</span>, expe.indexOf(<span class="string">" "</span>) + <span class="number">2</span>);</span><br><span class="line">        String s2 = expe.substring(expe.indexOf(<span class="string">" "</span>) + <span class="number">3</span>);</span><br><span class="line">        <span class="keyword">if</span> (!s1.equals(<span class="string">" "</span>) &amp;&amp; !s2.equals(<span class="string">" "</span>)) &#123;</span><br><span class="line">            <span class="keyword">double</span> d1 = Double.parseDouble(s1);</span><br><span class="line">            <span class="keyword">double</span> d2 = Double.parseDouble(s2);</span><br><span class="line">            <span class="keyword">if</span> (op.equals(<span class="string">"+"</span>)) &#123;</span><br><span class="line">                result = d1 + d2;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (op.equals(<span class="string">"-"</span>)) &#123;</span><br><span class="line">                result = d1 - d2;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (op.equals(<span class="string">"x"</span>)) &#123;</span><br><span class="line">                result = d1 * d2;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (op.equals(<span class="string">"/"</span>)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (d2 == <span class="number">0</span>) &#123;</span><br><span class="line">                    input.setText(<span class="string">"0不能作为除数！"</span>);</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    result = d1 / d2;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!s1.equals(<span class="string">""</span>) &amp;&amp; s2.equals(<span class="string">""</span>)) &#123;</span><br><span class="line">                input.setText(expe);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s1.equals(<span class="string">""</span>) &amp;&amp; !s2.equals(<span class="string">""</span>)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (op.equals(<span class="string">"+"</span>)) &#123;</span><br><span class="line">                    result = <span class="number">0</span> + d2;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (op.equals(<span class="string">"-"</span>)) &#123;</span><br><span class="line">                    result = <span class="number">0</span> - d2;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (op.equals(<span class="string">"x"</span>)) result = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (op.equals(<span class="string">"/"</span>)) &#123;</span><br><span class="line">                    result = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        input.setText(result+<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.运行代码后，结果显示:<br><img src="/img/%E8%AE%A1%E7%AE%97%E5%99%A8.png" alt="计算器"></p>
+<p>5.打包成APK:<br><img src="/img/%E7%AC%AC%E4%B8%80%E6%AD%A5.png" alt="第一步"></p>
+<p><img src="%5Cimg%5C%E7%AC%AC%E4%BA%8C%E6%AD%A5.png" alt="第二步"></p>
+<p><img src="/img/%E7%AC%AC%E4%B8%89%E6%AD%A5.png" alt="第三步"><br>第一次打包，选择<code>Create new</code>即可.</p>
+<p><img src="%5Cimg%5C%E7%AC%AC%E5%9B%9B%E6%AD%A5.png" alt="第四步"></p>
+<ul>
+<li>key store path:需要以<code>jks</code>结尾</li>
+<li>password :设置密码</li>
+<li>Alias:自定义一个别名</li>
+<li>password:密码，可以以第一个相同</li>
+<li>certificate:至少填写一个</li>
+</ul>
+<p><img src="/img/%E7%AC%AC%E4%BA%94%E6%AD%A5.png" alt="第五步"><br>在相应文件夹下便可以找到打包的.apk android端应用程序. </p>
+<p>6.增加一个导航页面并返回导航页面时保存计算器编辑框里的数据.界面如图所示:<br><img src="%5Cimg%5C%E5%AF%BC%E8%88%AA%E9%A1%B5%E9%9D%A2.png" alt="导航页面"></p>
+<p>(1)导航界面设计：<br>思路:采用一个垂直的线性布局里添加一个水平线性布局:<br><code>main.xml</code>代码:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"80sp"</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/et"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"600dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">"8dp"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"160dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"8dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@color/colorAccent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"计算器"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/cal"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"0dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"160dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_weight</span>=<span class="string">"1"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">"8dp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@color/colorPrimary"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:text</span>=<span class="string">"更多"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>(2)利用<code>intent</code>回传数据:<br>思路:<br>在导航页面创建一个<code>Intent</code>实列，用于启动和接受回传计算器页面的数据，在计算器页面也创建一个<code>Intent</code>实列，并向导航页面回传数据.<br><code>page.java</code>代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> top.oriheart.caculator;</span><br><span class="line"><span class="keyword">import</span> androidx.annotation.Nullable;</span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> android.content.Intent;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.util.Log;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.widget.Button;</span><br><span class="line"><span class="keyword">import</span> android.widget.EditText;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">page</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span> </span>&#123;</span><br><span class="line">    EditText store;</span><br><span class="line">    Button bt_cal;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.main);</span><br><span class="line">        store=findViewById(R.id.et);</span><br><span class="line">        bt_cal=findViewById(R.id.cal);</span><br><span class="line">        bt_cal.setOnClickListener(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (view.getId())&#123;</span><br><span class="line">            <span class="keyword">case</span> R.id.cal:</span><br><span class="line">                Intent intent=<span class="keyword">new</span> Intent(<span class="keyword">this</span>,MainActivity.class);</span><br><span class="line">                startActivityForResult(intent,<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActivityResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="keyword">int</span> resultCode, @Nullable Intent data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (requestCode)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">if</span>(resultCode==<span class="number">2</span>)&#123;</span><br><span class="line">                    String resultData=data.getStringExtra(<span class="string">"exp"</span>) ;</span><br><span class="line">                    System.out.println(resultData);</span><br><span class="line">                    store.setText((resultData));</span><br><span class="line">                    Log.d(<span class="string">"page "</span>,resultData);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(3)计算器页面添加的代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (view.getId()) &#123;</span><br><span class="line">           <span class="keyword">case</span> R.id.store:</span><br><span class="line">               Intent intent=<span class="keyword">new</span> Intent(<span class="keyword">this</span>,page.class);</span><br><span class="line">               intent.putExtra(<span class="string">"exp"</span>,input.getText().toString());</span><br><span class="line">               setResult(<span class="number">2</span>,intent);</span><br><span class="line">               input.setText(<span class="string">""</span>);</span><br><span class="line">               finish();</span><br></pre></td></tr></table></figure>
+<p>(4)，最终效果：当在导航页面点击计算器时跳转到计算器页面，当在计算器页面点击返回并保存时返回到导航页面并在编辑框内显示保存的数据。</p>
+<p><img src="/img/%E6%98%BE%E7%A4%BA%E7%BB%93%E6%9E%9C.png" alt="显示结果"></p>
+<p>一些对话框、监听器的练习：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> top.oriheart.ordering;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AlertDialog;</span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.app.ProgressDialog;</span><br><span class="line"><span class="keyword">import</span> android.content.DialogInterface;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.widget.Button;</span><br><span class="line"><span class="keyword">import</span> android.widget.ProgressBar;</span><br><span class="line"><span class="keyword">import</span> android.widget.RadioGroup;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.practice);</span><br><span class="line"></span><br><span class="line">        Button bt1 = findViewById(R.id.bt1);</span><br><span class="line">        RadioGroup radioGroup=findViewById(R.id.radioGroup);</span><br><span class="line">        <span class="keyword">final</span>  TextView textView=findViewById(R.id.textview);</span><br><span class="line"><span class="comment">//        bt1.setOnClickListener(new View.OnClickListener() &#123;</span></span><br><span class="line"><span class="comment">//            @Override</span></span><br><span class="line"><span class="comment">//            public void onClick(View view) &#123;</span></span><br><span class="line"><span class="comment">//                Toast.makeText(MainActivity.this, "我被点击2",Toast.LENGTH_LONG).show();</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;);</span></span><br><span class="line">      <span class="comment">//  bt1.setOnClickListener(myclick);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() &#123;</span></span><br><span class="line"><span class="comment">//            @Override</span></span><br><span class="line"><span class="comment">//            public void onCheckedChanged(RadioGroup group, int checkedId) &#123;</span></span><br><span class="line"><span class="comment">//                if (checkedId == R.id.rbtn) &#123;</span></span><br><span class="line"><span class="comment">//                    textView.setText("您的性别是：男");</span></span><br><span class="line"><span class="comment">//                &#125; else &#123;</span></span><br><span class="line"><span class="comment">//                    textView.setText("您的性别是：女");</span></span><br><span class="line"><span class="comment">//                &#125;</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//        AlertDialog dialog;</span></span><br><span class="line"><span class="comment">//        dialog=new AlertDialog.Builder(this)</span></span><br><span class="line"><span class="comment">//                .setTitle("Dialog对话框")</span></span><br><span class="line"><span class="comment">//                .setMessage("确定是否退出")</span></span><br><span class="line"><span class="comment">//                .setIcon(R.mipmap.ic_launcher)</span></span><br><span class="line"><span class="comment">//                .setPositiveButton("确定",null)</span></span><br><span class="line"><span class="comment">//                .setNegativeButton("取消",null)</span></span><br><span class="line"><span class="comment">//                .create();</span></span><br><span class="line"><span class="comment">//        dialog.show();</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//        AlertDialog dialog;</span></span><br><span class="line"><span class="comment">//        dialog=new AlertDialog.Builder(this)</span></span><br><span class="line"><span class="comment">//                .setTitle("请选择性别：")</span></span><br><span class="line"><span class="comment">//                .setIcon(R.mipmap.ic_launcher)</span></span><br><span class="line"><span class="comment">//                .setSingleChoiceItems(new String[]&#123;"男", "女"&#125;, 0,</span></span><br><span class="line"><span class="comment">//                        new DialogInterface.OnClickListener() &#123;</span></span><br><span class="line"><span class="comment">//                    @Override</span></span><br><span class="line"><span class="comment">//                    public void onClick(DialogInterface dialogInterface, int i) &#123;</span></span><br><span class="line"><span class="comment">//                        System.out.println(i);</span></span><br><span class="line"><span class="comment">//                        Toast.makeText(MainActivity.this,"哈哈",Toast.LENGTH_LONG);</span></span><br><span class="line"><span class="comment">//                    &#125;</span></span><br><span class="line"><span class="comment">//                &#125;)</span></span><br><span class="line"><span class="comment">//                .setPositiveButton("确定",null)</span></span><br><span class="line"><span class="comment">//                .create();</span></span><br><span class="line"><span class="comment">//        dialog.show();</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//        final ProgressDialog prodialog;</span></span><br><span class="line"><span class="comment">//        prodialog = new ProgressDialog(MainActivity.this);</span></span><br><span class="line"><span class="comment">//        prodialog.setTitle("进度条对话框");</span></span><br><span class="line"><span class="comment">//        prodialog.setIcon(R.mipmap.ic_launcher);</span></span><br><span class="line"><span class="comment">//        prodialog.setMessage("正在下载请等候...");</span></span><br><span class="line"><span class="comment">//        prodialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);</span></span><br><span class="line"><span class="comment">//        prodialog.show();</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//public void click(View view)&#123;</span></span><br><span class="line">    <span class="comment">//Toast.makeText(this, "我被点击",Toast.LENGTH_LONG).show();</span></span><br><span class="line">    <span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//    View.OnClickListener myclick=new View.OnClickListener() &#123;</span></span><br><span class="line"><span class="comment">//        @Override</span></span><br><span class="line"><span class="comment">//        public void onClick(View view) &#123;</span></span><br><span class="line"><span class="comment">//            Toast.makeText(MainActivity.this, "我被点击4",Toast.LENGTH_LONG).show();</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>Author：<a href="http://yoursite.com">John Doe</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/08/29/Android%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/">http://yoursite.com/2019/08/29/Android%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/08/29/Android%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/">August 29th 2019, 6:54:32 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/08/29/Android%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/">October 9th 2019, 3:54:53 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2019/08/29/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" title= "算法导论">
+                    <div class="nextTitle">算法导论</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/08/29/%E5%AE%9E%E7%94%A8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" title= "实用优化算法">
+                    <div class="prevTitle">实用优化算法</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:571508478@qq.com" target="_blank" rel="noopener" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/Gunmx" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                  
+                  <img class="profile-qr" src="/assets/qq.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 14
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2019/09/22/%E8%AE%A1%E8%92%9C%E5%AE%A2/" >计蒜客</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2019/09/22/AJAX/" >AJAX</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/06</span><a class="archive-post-title" href= "/2019/09/06/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%9B%86/" >Linux常用命令集</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/01</span><a class="archive-post-title" href= "/2019/09/01/VLC%E5%AD%A6%E4%B9%A0/" >VLC学习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/Android%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF/" >Android应用开发技术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E5%AE%9E%E7%94%A8%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95/" >实用优化算法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" >算法导论</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/" >编译技术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/27</span><a class="archive-post-title" href= "/2019/08/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/" >攻防世界</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/27</span><a class="archive-post-title" href= "/2019/08/27/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/" >机器学习--多元线性回归算法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/24</span><a class="archive-post-title" href= "/2019/08/24/SQL%E6%B3%A8%E5%85%A5/" >SQL注入</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/21</span><a class="archive-post-title" href= "/2019/08/21/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%9F%BA%E7%A1%80/" >PHP反序列化基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/20</span><a class="archive-post-title" href= "/2019/08/20/Docker%E7%9A%84%E4%BD%BF%E7%94%A8/" >Docker的使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/09</span><a class="archive-post-title" href= "/2019/08/09/flask/" >flask学习</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="AJAX"><span class="iconfont-archer">&#xe606;</span>AJAX</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="android 开发"><span class="iconfont-archer">&#xe606;</span>android 开发</span>
+    
+        <span class="sidebar-tag-name" data-tags="linux命令集"><span class="iconfont-archer">&#xe606;</span>linux命令集</span>
+    
+        <span class="sidebar-tag-name" data-tags="计算机"><span class="iconfont-archer">&#xe606;</span>计算机</span>
+    
+        <span class="sidebar-tag-name" data-tags="信息安全"><span class="iconfont-archer">&#xe606;</span>信息安全</span>
+    
+        <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
+    
+        <span class="sidebar-tag-name" data-tags="VLC"><span class="iconfont-archer">&#xe606;</span>VLC</span>
+    
+        <span class="sidebar-tag-name" data-tags="flask"><span class="iconfont-archer">&#xe606;</span>flask</span>
+    
+        <span class="sidebar-tag-name" data-tags="cookie"><span class="iconfont-archer">&#xe606;</span>cookie</span>
+    
+        <span class="sidebar-tag-name" data-tags="get"><span class="iconfont-archer">&#xe606;</span>get</span>
+    
+        <span class="sidebar-tag-name" data-tags="post"><span class="iconfont-archer">&#xe606;</span>post</span>
+    
+        <span class="sidebar-tag-name" data-tags="AI"><span class="iconfont-archer">&#xe606;</span>AI</span>
+    
+        <span class="sidebar-tag-name" data-tags="多元线性回归"><span class="iconfont-archer">&#xe606;</span>多元线性回归</span>
+    
+        <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
+    
+        <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
+    
+        <span class="sidebar-tag-name" data-tags="writeup"><span class="iconfont-archer">&#xe606;</span>writeup</span>
+    
+        <span class="sidebar-tag-name" data-tags="编译技术"><span class="iconfont-archer">&#xe606;</span>编译技术</span>
+    
+        <span class="sidebar-tag-name" data-tags="程序设计"><span class="iconfont-archer">&#xe606;</span>程序设计</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="基础知识"><span class="iconfont-archer">&#xe60a;</span>基础知识</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机"><span class="iconfont-archer">&#xe60a;</span>计算机</span>
+    
+        <span class="sidebar-category-name" data-categories="简单计算器开发"><span class="iconfont-archer">&#xe60a;</span>简单计算器开发</span>
+    
+        <span class="sidebar-category-name" data-categories="linux"><span class="iconfont-archer">&#xe60a;</span>linux</span>
+    
+        <span class="sidebar-category-name" data-categories="基础知识/AJAX"><span class="iconfont-archer">&#xe60a;</span>基础知识/AJAX</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/PHP"><span class="iconfont-archer">&#xe60a;</span>计算机/PHP</span>
+    
+        <span class="sidebar-category-name" data-categories="VLC"><span class="iconfont-archer">&#xe60a;</span>VLC</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/flask"><span class="iconfont-archer">&#xe60a;</span>计算机/flask</span>
+    
+        <span class="sidebar-category-name" data-categories="AI"><span class="iconfont-archer">&#xe60a;</span>AI</span>
+    
+        <span class="sidebar-category-name" data-categories="信息安全"><span class="iconfont-archer">&#xe60a;</span>信息安全</span>
+    
+        <span class="sidebar-category-name" data-categories="linux/命令集"><span class="iconfont-archer">&#xe60a;</span>linux/命令集</span>
+    
+        <span class="sidebar-category-name" data-categories="大三上学期课程"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程</span>
+    
+        <span class="sidebar-category-name" data-categories="算法程序设计"><span class="iconfont-archer">&#xe60a;</span>算法程序设计</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/信息安全"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全</span>
+    
+        <span class="sidebar-category-name" data-categories="AI/多元线性回归"><span class="iconfont-archer">&#xe60a;</span>AI/多元线性回归</span>
+    
+        <span class="sidebar-category-name" data-categories="信息安全/CTF"><span class="iconfont-archer">&#xe60a;</span>信息安全/CTF</span>
+    
+        <span class="sidebar-category-name" data-categories="大三上学期课程/编译技术"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程/编译技术</span>
+    
+        <span class="sidebar-category-name" data-categories="算法程序设计/计蒜客"><span class="iconfont-archer">&#xe60a;</span>算法程序设计/计蒜客</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/信息安全/Docker"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全/Docker</span>
+    
+        <span class="sidebar-category-name" data-categories="信息安全/CTF/web"><span class="iconfont-archer">&#xe60a;</span>信息安全/CTF/web</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "John Doe"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
