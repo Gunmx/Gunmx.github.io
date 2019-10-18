@@ -276,7 +276,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">870</span>Reading time: <span class="post-count reading-time">3 min</span></span>
+                        <span>Word count: <span class="post-count word-count">851</span>Reading time: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -407,8 +407,8 @@ height:50vh;
     <article class="article-entry">
         <p>1.题目地址：<a href="http://111.198.29.45:41645/" target="_blank" rel="noopener">http://111.198.29.45:41645/</a><br>  首先用GET方式提交一个名为a,值为1的变量–&gt;<code>payload:?a=1</code>返回:<br>  再以POST方式提交一个b=2的变量.一开始有点懵，突然回忆起来曾经听过北理嵩天老师的《Python网络爬虫与信息提取》课程，写了一个简单的脚本输出了flag:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">value=&#123;<span class="string">'b'</span>:<span class="number">2</span>&#125;</span><br><span class="line">demo=requests.post(<span class="string">"http://111.198.29.45:41645/?a=1"</span>,value)</span><br><span class="line">print(demo.text)</span><br></pre></td></tr></table></figure>
-<p>![GET-POST][“/CTF/GET-POST.png”]</p>
-<p>2.题目:X老师上课讲了Robots协议，小宁同学却上课打了瞌睡，赶紧来教教小宁Robots协议是什么吧。<br>之前对robots协议不是理解的很透彻，谷歌查了一下robots协议，上面是这样描述的：<br>![robots协议][“/CTF/robots.png”]<br>瞬间知道第一步应该读取robots.txt里的内容，直接再地址栏后面跟上<code>/robots.txt</code>即可读取该文件里的内容，里面的内容是这样的:<br>![robots.txt][“/CTF/robots内容.png”]<br>看到这里一开始很迷惑，因为不是<code>.php</code>文件已经<code>disallow</code>了吗？在群里问了大佬，明白这只是一种道德规范(有一种此地无银三百两的意味~)在根目录下直接读取``f1ag_1s_h3re.php<code>文件，即可读到</code>flag`。</p>
+<p><img src="/CTF/GET-POST.png" alt="GET-POST"></p>
+<p>2.题目:X老师上课讲了Robots协议，小宁同学却上课打了瞌睡，赶紧来教教小宁Robots协议是什么吧。<br>之前对robots协议不是理解的很透彻，谷歌查了一下robots协议，上面是这样描述的：<br><img src="/CTF/robots.png" alt="robots协议"><br>瞬间知道第一步应该读取robots.txt里的内容，直接再地址栏后面跟上<code>/robots.txt</code>即可读取该文件里的内容，里面的内容是这样的:<br><img src="/CTF/robots%E5%86%85%E5%AE%B9.png" alt="robots.txt"><br>看到这里一开始很迷惑，因为不是<code>.php</code>文件已经<code>disallow</code>了吗？在群里问了大佬，明白这只是一种道德规范(有一种此地无银三百两的意味~)在根目录下直接读取``f1ag_1s_h3re.php<code>文件，即可读到</code>flag`。</p>
 <p>3.题目：X老师忘记删除备份文件，他派小宁同学去把备份文件找出来,一起来帮小宁同学吧！<br>打开题目地址，看到你知道ndex.php的备份文件吗？有点懵，百度了备份文件，看到一些备份文件的扩展名，输入/index.php.bak试一下，提示下载文件，将源码下载下来之后用sublime Text打开，即可得到flag.</p>
 <p>4.题目:X老师告诉小宁其实xff和referer是可以伪造的。<br>打开网址，看到”ip地址必须为123.123.123.123”,再根据题目的提示”xff referer”必应<code>xff</code>了解到:<code>X-Forwarded-For（XFF）</code>是用来识别通过HTTP代理或负载均衡方式连接到Web服务器的客户端最原始的IP地址的HTTP请求头字段。使用bp抓包，在请求包中添加<code>X-Forwarded-For</code>字段，值为:123.123.123.123，发包，返回一个页面，连接必须来自<code>https://www.google.com</code>,<code>Bing</code>一下<code>Referer</code>：当用户在浏览器上点击一个链接时，会产生一个 HTTP 请求，用于获取新的页面内容，而在该请求的报头中，会包含一个 Referrer，用以指定该请求是从哪个页面跳转页来的，常被用于分析用户来源等信息。但是也有成为用户的一个不安全因素，比如有些网站直接将 sessionid 或是 token 放在地址栏里传递的，会原样不动地当作 Referrer 报头的内容传递给第三方网站。<br>所以就有了 Referrer Policy，用于过滤 Referrer 报头内容，目前是一个候选标准，不过已经有部分浏览器支持该标准。使用bp添加一个字段为<code>Referer:https://www.google.com</code>发包，则拿到<code>flag</code>.</p>
 <p>5.题目:小宁听说php是最好的语言,于是她简单学习之后写了几行php代码。</p>
@@ -422,7 +422,7 @@ height:50vh;
             <p>Author：<a href="http://yoursite.com">菠萝吹雪</a>
             <p>原文链接：<a href="http://yoursite.com/2019/08/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/">http://yoursite.com/2019/08/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/</a>
             <p>发表日期：<a href="http://yoursite.com/2019/08/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/">August 27th 2019, 7:17:16 pm</a>
-            <p>更新日期：<a href="http://yoursite.com/2019/08/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/">September 21st 2019, 8:58:12 pm</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/08/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/">October 18th 2019, 9:23:18 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -718,6 +718,12 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 14
@@ -811,19 +817,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="AJAX"><span class="iconfont-archer">&#xe606;</span>AJAX</span>
     
-        <span class="sidebar-tag-name" data-tags="linux命令集"><span class="iconfont-archer">&#xe606;</span>linux命令集</span>
-    
         <span class="sidebar-tag-name" data-tags="android 开发"><span class="iconfont-archer">&#xe606;</span>android 开发</span>
+    
+        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
+    
+        <span class="sidebar-tag-name" data-tags="linux命令集"><span class="iconfont-archer">&#xe606;</span>linux命令集</span>
     
         <span class="sidebar-tag-name" data-tags="计算机"><span class="iconfont-archer">&#xe606;</span>计算机</span>
     
         <span class="sidebar-tag-name" data-tags="信息安全"><span class="iconfont-archer">&#xe606;</span>信息安全</span>
     
         <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
-    
-        <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
-    
-        <span class="sidebar-tag-name" data-tags="VLC"><span class="iconfont-archer">&#xe606;</span>VLC</span>
     
         <span class="sidebar-tag-name" data-tags="flask"><span class="iconfont-archer">&#xe606;</span>flask</span>
     
@@ -832,6 +836,8 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="get"><span class="iconfont-archer">&#xe606;</span>get</span>
     
         <span class="sidebar-tag-name" data-tags="post"><span class="iconfont-archer">&#xe606;</span>post</span>
+    
+        <span class="sidebar-tag-name" data-tags="VLC"><span class="iconfont-archer">&#xe606;</span>VLC</span>
     
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
     
@@ -843,9 +849,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="多元线性回归"><span class="iconfont-archer">&#xe606;</span>多元线性回归</span>
     
-        <span class="sidebar-tag-name" data-tags="编译技术"><span class="iconfont-archer">&#xe606;</span>编译技术</span>
-    
         <span class="sidebar-tag-name" data-tags="程序设计"><span class="iconfont-archer">&#xe606;</span>程序设计</span>
+    
+        <span class="sidebar-tag-name" data-tags="编译技术"><span class="iconfont-archer">&#xe606;</span>编译技术</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -882,41 +888,41 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="基础知识"><span class="iconfont-archer">&#xe60a;</span>基础知识</span>
     
-        <span class="sidebar-category-name" data-categories="linux"><span class="iconfont-archer">&#xe60a;</span>linux</span>
-    
         <span class="sidebar-category-name" data-categories="简单计算器开发"><span class="iconfont-archer">&#xe60a;</span>简单计算器开发</span>
     
         <span class="sidebar-category-name" data-categories="计算机"><span class="iconfont-archer">&#xe60a;</span>计算机</span>
     
+        <span class="sidebar-category-name" data-categories="linux"><span class="iconfont-archer">&#xe60a;</span>linux</span>
+    
         <span class="sidebar-category-name" data-categories="基础知识/AJAX"><span class="iconfont-archer">&#xe60a;</span>基础知识/AJAX</span>
     
-        <span class="sidebar-category-name" data-categories="linux/命令集"><span class="iconfont-archer">&#xe60a;</span>linux/命令集</span>
+        <span class="sidebar-category-name" data-categories="计算机/flask"><span class="iconfont-archer">&#xe60a;</span>计算机/flask</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/PHP"><span class="iconfont-archer">&#xe60a;</span>计算机/PHP</span>
     
         <span class="sidebar-category-name" data-categories="VLC"><span class="iconfont-archer">&#xe60a;</span>VLC</span>
     
         <span class="sidebar-category-name" data-categories="信息安全"><span class="iconfont-archer">&#xe60a;</span>信息安全</span>
     
-        <span class="sidebar-category-name" data-categories="计算机/信息安全"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全</span>
-    
         <span class="sidebar-category-name" data-categories="AI"><span class="iconfont-archer">&#xe60a;</span>AI</span>
     
-        <span class="sidebar-category-name" data-categories="大三上学期课程"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程</span>
+        <span class="sidebar-category-name" data-categories="linux/命令集"><span class="iconfont-archer">&#xe60a;</span>linux/命令集</span>
     
         <span class="sidebar-category-name" data-categories="算法程序设计"><span class="iconfont-archer">&#xe60a;</span>算法程序设计</span>
     
-        <span class="sidebar-category-name" data-categories="计算机/PHP"><span class="iconfont-archer">&#xe60a;</span>计算机/PHP</span>
+        <span class="sidebar-category-name" data-categories="大三上学期课程"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程</span>
     
-        <span class="sidebar-category-name" data-categories="计算机/flask"><span class="iconfont-archer">&#xe60a;</span>计算机/flask</span>
+        <span class="sidebar-category-name" data-categories="计算机/信息安全"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全</span>
     
         <span class="sidebar-category-name" data-categories="信息安全/CTF"><span class="iconfont-archer">&#xe60a;</span>信息安全/CTF</span>
     
-        <span class="sidebar-category-name" data-categories="计算机/信息安全/Docker"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全/Docker</span>
-    
         <span class="sidebar-category-name" data-categories="AI/多元线性回归"><span class="iconfont-archer">&#xe60a;</span>AI/多元线性回归</span>
+    
+        <span class="sidebar-category-name" data-categories="算法程序设计/计蒜客"><span class="iconfont-archer">&#xe60a;</span>算法程序设计/计蒜客</span>
     
         <span class="sidebar-category-name" data-categories="大三上学期课程/编译技术"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程/编译技术</span>
     
-        <span class="sidebar-category-name" data-categories="算法程序设计/计蒜客"><span class="iconfont-archer">&#xe60a;</span>算法程序设计/计蒜客</span>
+        <span class="sidebar-category-name" data-categories="计算机/信息安全/Docker"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全/Docker</span>
     
         <span class="sidebar-category-name" data-categories="信息安全/CTF/web"><span class="iconfont-archer">&#xe60a;</span>信息安全/CTF/web</span>
     
