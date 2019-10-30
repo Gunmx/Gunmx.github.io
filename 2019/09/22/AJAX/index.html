@@ -407,9 +407,7 @@ height:50vh;
 <p>responseXML:<br>　　此responseXML属性用于当接收到完整的HTTP响应时(readyState为4)描述XML响应；此时，Content-Type头部指定MIME(媒体)类型为text/xml，application/xml或以+xml结尾。如果Content-Type头部并不包含这些媒体类型之一，那么responseXML的值为null。无论何时，只要readyState值不为4，那么该responseXML的值也为null。</p>
 <p>status:<br>　　这个status属性描述了HTTP状态代码，而且其类型为short。而且，仅当readyState值为3(正在接收中)或4(已加载)时，这个status属性才可用。当readyState的值小于3时试图存取status的值将引发一个异常。　　</p>
 <p>statusText:<br>　　这个statusText属性描述了HTTP状态代码文本；并且仅当readyState值为3或4才可用。当readyState为其它值时试图存取statusText属性将引发一个异常。<br>　　<br>XMLHttpRequest对象的方法：<br>abort()方法:<br>　　你可以使用这个abort()方法来暂停与一个XMLHttpRequest对象相联系的HTTP请求，从而把该对象复位到未初始化状态。<br>　　<br>open()方法:<br>你需要调用<code>open(DOMString method，DOMString uri，boolean async，DOMString username，DOMString password)</code>方法初始化一个XMLHttpRequest对象。其中，method参数是必须提供的-用于指定你想用来发送请求的HTTP方法(GET，POST，PUT，DELETE或HEAD)。为了把数据发送到服务器，应该使用POST方法；为了从服务器端检索数据，应该使用GET方法。另外，uri参数用于指定XMLHttpRequest对象把请求发送到的服务器相应的URI。借助于window.document.baseURI属性，该uri被解析为一个绝对的URI-换句话说，你可以使用相对的URI-它将使用与浏览器解析相对的URI一样的方式被解析。async参数指定是否请求是异步的-缺省值为true。为了发送一个同步请求，需要把这个参数设置为false。对于要求认证的服务器，你可以提供可选的用户名和口令参数。在调用open()方法后，XMLHttpRequest对象把它的readyState属性设置为1(打开)并且把responseText、responseXML、status和statusText属性复位到它们的初始值。另外，它还复位请求头部。注意，如果你调用open()方法并且此时readyState为4，则XMLHttpRequest对象将复位这些值。</p>
-<p>send()方法<br>　　在通过调用open()方法准备好一个请求之后，你需要把该请求发送到服务器。仅当readyState值为1时，你才可以调用send()方法；否则的话，XMLHttpRequest对象将引发一个异常。该请求被使用提供给open()方法的参数发送到服务器。当async参数为true时，send()方法立即返回，从而允许其它客户端脚本处理继续。在调用send()方法后，XMLHttpRequest对象把readyState的值设置为2(发送)。当服务器响应时，在接收消息体之前，如果存在任何消息体的话，XMLHttpRequest对象将把readyState设置为3(正在接收中)。当请求完成加载时，它把readyState设置为4(已加载)。对于一个HEAD类型的请求，它将在把readyState值设置为3后再立即把它设置为4。<br>　　　send()方法使用一个可选的参数-该参数可以包含可变类型的数据。典型地，你使用它并通过POST方法把数据发送到服务器。另外，你可以显式地使用null参数调用send()方法，这与不用参数调用它一样。对于大多数其它的数据类型，在调用send()方法之前，应该使用setRequestHeader()方法(见后面的解释)先设置Content-Type头部。如果在send(data)方法中的data参数的类型为DOMString，那么，数据将被编码为UTF-8。如果数据是Document类型，那么将使用由data.xmlEncoding指定的编码串行化该数据。<br>　　　<br>setRequestHeader()方法<br>　　该setRequestHeader(DOMString header，DOMString value)方法用来设置请求的头部信息。当readyState值为1时，你可以在调用open()方法后调用这个方法；否则，你将得到一个异常<br>　　<br>getResponseHeader()方法<br>　　getResponseHeader(DOMString header，value)方法用于检索响应的头部值。仅当readyState值是3或4(换句话说，在响应头部可用以后)时，才可以调用这个方法；否则，该方法返回一个空字符串。<br>　　<br>getAllResponseHeaders()方法<br>　　该getAllResponseHeaders()方法以一个字符串形式返回所有的响应头部（每一个头部占单独的一行）。如果readyState的值不是3或4，则该方法返回null</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE HTML&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">en</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">            <span class="function"><span class="keyword">function</span> <span class="title">loadXMLDoc</span><span class="params">()</span></span></span></span><br><span class="line">            &#123;</span><br><span class="line"><span class="actionscript">                <span class="keyword">var</span> xmlhttp;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span></span><br><span class="line"><span class="actionscript">                    xmlhttp=<span class="keyword">new</span> XMLHttpRequest;</span></span><br><span class="line">                &#125;</span><br><span class="line"><span class="actionscript">                <span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="actionscript">                    xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft XMLhttp"</span>);</span></span><br><span class="line">                &#125;</span><br><span class="line"><span class="actionscript">                xmlhttp.onreadystatechange=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="vbscript">                    /*<span class="keyword">if</span>(xmlhttp.readyState==<span class="number">4</span>&amp;&amp;xmlhttp.status==<span class="number">200</span>)&#123;</span></span><br><span class="line"><span class="javascript">                        <span class="built_in">document</span>.getElementById(<span class="string">"mydiv"</span>).innerHTML=xmlhttp.responseText;</span></span><br><span class="line">                    &#125;*/</span><br><span class="line"><span class="javascript">                    <span class="built_in">window</span>.alert(xmlhttp.responseText)</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">document</span>.getElementById(<span class="string">"mydiv"</span>).innerHTML=xmlhttp.responseText;</span></span><br><span class="line">                &#125;</span><br><span class="line"><span class="actionscript">                xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"xmlhttp_info.txt"</span>,<span class="literal">true</span>);</span></span><br><span class="line">                xmlhttp.send();</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>XMLHttpRequest对象的使用<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"mydiv"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"loadXMLDoc()"</span>&gt;</span>查看文件内容<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/img/%E6%B3%A8%E6%84%8F%E5%8F%8C%E5%BC%95%E5%8F%B7%E9%97%AD%E5%90%88.png" alt="注意双引号闭合"></p>
+<p>send()方法<br>　　在通过调用open()方法准备好一个请求之后，你需要把该请求发送到服务器。仅当readyState值为1时，你才可以调用send()方法；否则的话，XMLHttpRequest对象将引发一个异常。该请求被使用提供给open()方法的参数发送到服务器。当async参数为true时，send()方法立即返回，从而允许其它客户端脚本处理继续。在调用send()方法后，XMLHttpRequest对象把readyState的值设置为2(发送)。当服务器响应时，在接收消息体之前，如果存在任何消息体的话，XMLHttpRequest对象将把readyState设置为3(正在接收中)。当请求完成加载时，它把readyState设置为4(已加载)。对于一个HEAD类型的请求，它将在把readyState值设置为3后再立即把它设置为4。<br>　　　send()方法使用一个可选的参数-该参数可以包含可变类型的数据。典型地，你使用它并通过POST方法把数据发送到服务器。另外，你可以显式地使用null参数调用send()方法，这与不用参数调用它一样。对于大多数其它的数据类型，在调用send()方法之前，应该使用setRequestHeader()方法(见后面的解释)先设置Content-Type头部。如果在send(data)方法中的data参数的类型为DOMString，那么，数据将被编码为UTF-8。如果数据是Document类型，那么将使用由data.xmlEncoding指定的编码串行化该数据。<br>　　　<br>setRequestHeader()方法<br>　　该setRequestHeader(DOMString header，DOMString value)方法用来设置请求的头部信息。当readyState值为1时，你可以在调用open()方法后调用这个方法；否则，你将得到一个异常<br>　　<br>getResponseHeader()方法<br>　　getResponseHeader(DOMString header，value)方法用于检索响应的头部值。仅当readyState值是3或4(换句话说，在响应头部可用以后)时，才可以调用这个方法；否则，该方法返回一个空字符串。<br>　　<br>getAllResponseHeaders()方法<br>　　该getAllResponseHeaders()方法以一个字符串形式返回所有的响应头部（每一个头部占单独的一行）。如果readyState的值不是3或4，则该方法返回null<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE HTML&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">en</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">            <span class="function"><span class="keyword">function</span> <span class="title">loadXMLDoc</span><span class="params">()</span></span></span></span><br><span class="line">            &#123;</span><br><span class="line"><span class="actionscript">                <span class="keyword">var</span> xmlhttp;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span></span><br><span class="line"><span class="actionscript">                    xmlhttp=<span class="keyword">new</span> XMLHttpRequest;</span></span><br><span class="line">                &#125;</span><br><span class="line"><span class="actionscript">                <span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="actionscript">                    xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft XMLhttp"</span>);</span></span><br><span class="line">                &#125;</span><br><span class="line"><span class="actionscript">                xmlhttp.onreadystatechange=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="vbscript">                    /*<span class="keyword">if</span>(xmlhttp.readyState==<span class="number">4</span>&amp;&amp;xmlhttp.status==<span class="number">200</span>)&#123;</span></span><br><span class="line"><span class="javascript">                        <span class="built_in">document</span>.getElementById(<span class="string">"mydiv"</span>).innerHTML=xmlhttp.responseText;</span></span><br><span class="line">                    &#125;*/</span><br><span class="line"><span class="javascript">                    <span class="built_in">window</span>.alert(xmlhttp.responseText)</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">document</span>.getElementById(<span class="string">"mydiv"</span>).innerHTML=xmlhttp.responseText;</span></span><br><span class="line">                &#125;</span><br><span class="line"><span class="actionscript">                xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"xmlhttp_info.txt"</span>,<span class="literal">true</span>);</span></span><br><span class="line">                xmlhttp.send();</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>XMLHttpRequest对象的使用<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"mydiv"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onclick</span>=<span class="string">"loadXMLDoc()"</span>&gt;</span>查看文件内容<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure><br><img src="/img/注意双引号闭合.png" alt="注意双引号闭合"></p>
 
     </article>
     <!-- license  -->
@@ -784,12 +782,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" >算法导论</a>
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/" >编译技术</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/" >编译技术</a>
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" >算法导论</a>
         </li>
     
     
@@ -827,17 +825,17 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="AJAX"><span class="iconfont-archer">&#xe606;</span>AJAX</span>
-    
-        <span class="sidebar-tag-name" data-tags="linux命令集"><span class="iconfont-archer">&#xe606;</span>linux命令集</span>
-    
-        <span class="sidebar-tag-name" data-tags="android 开发"><span class="iconfont-archer">&#xe606;</span>android 开发</span>
-    
         <span class="sidebar-tag-name" data-tags="计算机"><span class="iconfont-archer">&#xe606;</span>计算机</span>
     
         <span class="sidebar-tag-name" data-tags="信息安全"><span class="iconfont-archer">&#xe606;</span>信息安全</span>
     
         <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
+    
+        <span class="sidebar-tag-name" data-tags="AJAX"><span class="iconfont-archer">&#xe606;</span>AJAX</span>
+    
+        <span class="sidebar-tag-name" data-tags="android 开发"><span class="iconfont-archer">&#xe606;</span>android 开发</span>
+    
+        <span class="sidebar-tag-name" data-tags="linux命令集"><span class="iconfont-archer">&#xe606;</span>linux命令集</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
@@ -855,21 +853,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="post"><span class="iconfont-archer">&#xe606;</span>post</span>
     
+        <span class="sidebar-tag-name" data-tags="AI"><span class="iconfont-archer">&#xe606;</span>AI</span>
+    
+        <span class="sidebar-tag-name" data-tags="多元线性回归"><span class="iconfont-archer">&#xe606;</span>多元线性回归</span>
+    
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="writeup"><span class="iconfont-archer">&#xe606;</span>writeup</span>
     
-        <span class="sidebar-tag-name" data-tags="算法实现"><span class="iconfont-archer">&#xe606;</span>算法实现</span>
-    
-        <span class="sidebar-tag-name" data-tags="AI"><span class="iconfont-archer">&#xe606;</span>AI</span>
-    
-        <span class="sidebar-tag-name" data-tags="多元线性回归"><span class="iconfont-archer">&#xe606;</span>多元线性回归</span>
-    
         <span class="sidebar-tag-name" data-tags="编译技术"><span class="iconfont-archer">&#xe606;</span>编译技术</span>
     
         <span class="sidebar-tag-name" data-tags="程序设计"><span class="iconfont-archer">&#xe606;</span>程序设计</span>
+    
+        <span class="sidebar-tag-name" data-tags="算法实现"><span class="iconfont-archer">&#xe606;</span>算法实现</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -904,39 +902,39 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="基础知识"><span class="iconfont-archer">&#xe60a;</span>基础知识</span>
+        <span class="sidebar-category-name" data-categories="计算机"><span class="iconfont-archer">&#xe60a;</span>计算机</span>
     
-        <span class="sidebar-category-name" data-categories="linux"><span class="iconfont-archer">&#xe60a;</span>linux</span>
+        <span class="sidebar-category-name" data-categories="基础知识"><span class="iconfont-archer">&#xe60a;</span>基础知识</span>
     
         <span class="sidebar-category-name" data-categories="简单计算器开发"><span class="iconfont-archer">&#xe60a;</span>简单计算器开发</span>
     
-        <span class="sidebar-category-name" data-categories="计算机"><span class="iconfont-archer">&#xe60a;</span>计算机</span>
+        <span class="sidebar-category-name" data-categories="linux"><span class="iconfont-archer">&#xe60a;</span>linux</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/信息安全"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/PHP"><span class="iconfont-archer">&#xe60a;</span>计算机/PHP</span>
     
         <span class="sidebar-category-name" data-categories="基础知识/AJAX"><span class="iconfont-archer">&#xe60a;</span>基础知识/AJAX</span>
-    
-        <span class="sidebar-category-name" data-categories="linux/命令集"><span class="iconfont-archer">&#xe60a;</span>linux/命令集</span>
     
         <span class="sidebar-category-name" data-categories="VLC"><span class="iconfont-archer">&#xe60a;</span>VLC</span>
     
         <span class="sidebar-category-name" data-categories="计算机/flask"><span class="iconfont-archer">&#xe60a;</span>计算机/flask</span>
     
+        <span class="sidebar-category-name" data-categories="AI"><span class="iconfont-archer">&#xe60a;</span>AI</span>
+    
         <span class="sidebar-category-name" data-categories="信息安全"><span class="iconfont-archer">&#xe60a;</span>信息安全</span>
     
-        <span class="sidebar-category-name" data-categories="计算机/信息安全"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全</span>
-    
-        <span class="sidebar-category-name" data-categories="AI"><span class="iconfont-archer">&#xe60a;</span>AI</span>
+        <span class="sidebar-category-name" data-categories="linux/命令集"><span class="iconfont-archer">&#xe60a;</span>linux/命令集</span>
     
         <span class="sidebar-category-name" data-categories="大三上学期课程"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程</span>
     
-        <span class="sidebar-category-name" data-categories="算法程序设计"><span class="iconfont-archer">&#xe60a;</span>算法程序设计</span>
-    
-        <span class="sidebar-category-name" data-categories="计算机/PHP"><span class="iconfont-archer">&#xe60a;</span>计算机/PHP</span>
-    
-        <span class="sidebar-category-name" data-categories="信息安全/CTF"><span class="iconfont-archer">&#xe60a;</span>信息安全/CTF</span>
-    
         <span class="sidebar-category-name" data-categories="计算机/信息安全/Docker"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全/Docker</span>
     
+        <span class="sidebar-category-name" data-categories="算法程序设计"><span class="iconfont-archer">&#xe60a;</span>算法程序设计</span>
+    
         <span class="sidebar-category-name" data-categories="AI/多元线性回归"><span class="iconfont-archer">&#xe60a;</span>AI/多元线性回归</span>
+    
+        <span class="sidebar-category-name" data-categories="信息安全/CTF"><span class="iconfont-archer">&#xe60a;</span>信息安全/CTF</span>
     
         <span class="sidebar-category-name" data-categories="大三上学期课程/编译技术"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程/编译技术</span>
     
@@ -979,7 +977,24 @@ jsonContent:
     
         <script src="/scripts/share.js" async></script>    
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
 </html>
 
 

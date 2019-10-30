@@ -407,38 +407,14 @@ height:50vh;
     <article class="article-entry">
         <p>一直对信息安全感兴趣，大二临近暑假时，老师打算安排一场关于信息安全的培训，并建议学习Docker的安装与使用，因此培训前一天去学了Docker。</p>
 <h2 id="一-Docker环境配置"><a href="#一-Docker环境配置" class="headerlink" title="一.Docker环境配置"></a>一.Docker环境配置</h2><h3 id="1-Docker简介："><a href="#1-Docker简介：" class="headerlink" title="1.Docker简介："></a>1.<code>Docker</code>简介：</h3><p>Docker 是一个开源的应用容器引擎，基于 <a href="https://www.runoob.com/go/go-tutorial.html" target="_blank" rel="noopener">Go 语言</a> 并遵从Apache2.0协议开源。<br>Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。<br>容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。</p>
-<h3 id="2-Docker架构："><a href="#2-Docker架构：" class="headerlink" title="2.Docker架构："></a>2.<code>Docker</code>架构：</h3><p><img src="/img/docker%E6%9E%B6%E6%9E%84.png" alt="docker架构"><br>图片来源：<a href="https://www.runoob.com/docker/docker-architecture.htm" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-architecture.htm</a></p>
-<h3 id="3-Docker的安装："><a href="#3-Docker的安装：" class="headerlink" title="3.Docker的安装："></a>3.<code>Docker</code>的安装：</h3><p>以下是在<code>Ubuntu</code>环境下按安装<code>Docker</code>的详细步骤：<br>  a.通过 <code>uname -r</code> 命令查看你当前的内核版本:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ uname -r</span><br><span class="line">4.18.0-15-generic</span><br></pre></td></tr></table></figure>
-<p>  b.更新<code>apt</code>包:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
-<p>  c.确保<code>apt</code>源不被篡改，使用<code>https</code>.因此，首先需要添加使用<code>https</code>传输的软件包以及CA证书. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install \</span><br><span class="line">apt-transport-https \</span><br><span class="line">ca-certificates \</span><br><span class="line">curl \</span><br><span class="line">gnupg-agent \</span><br><span class="line">software-properties-common</span><br></pre></td></tr></table></figure>
-<p>  d.为确认安装的软件包的合法性，需要添加软件源的GPG密钥.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-<p>  e.向source.list中添加Docker CE软件源:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo add-apt-repository \</span><br><span class="line">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span><br><span class="line">$(lsb_release -cs) \</span><br><span class="line">stable&quot;</span><br></pre></td></tr></table></figure>
-<p>  f.更新apt软件包缓存，并安装docker-ce:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install docker-ce</span><br></pre></td></tr></table></figure>
-<p>  g.启动Docker CE:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl enable docker</span><br><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure>
-<h3 id="4-建立Docker用户组"><a href="#4-建立Docker用户组" class="headerlink" title="4.建立Docker用户组"></a>4.建立<code>Docker</code>用户组</h3><p>  a.建立用户组：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo groupadd docker</span><br></pre></td></tr></table></figure>
-<p>  b.将当前用户加入到docker组中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo usermod -aG docker $USER</span><br></pre></td></tr></table></figure>
-<p>  c.重启系统，进行如下测试.</p>
+<h3 id="2-Docker架构："><a href="#2-Docker架构：" class="headerlink" title="2.Docker架构："></a>2.<code>Docker</code>架构：</h3><p><img src="/img/docker架构.png" alt="docker架构"><br>图片来源：<a href="https://www.runoob.com/docker/docker-architecture.htm" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-architecture.htm</a></p>
+<h3 id="3-Docker的安装："><a href="#3-Docker的安装：" class="headerlink" title="3.Docker的安装："></a>3.<code>Docker</code>的安装：</h3><p>以下是在<code>Ubuntu</code>环境下按安装<code>Docker</code>的详细步骤：<br>  a.通过 <code>uname -r</code> 命令查看你当前的内核版本:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ uname -r</span><br><span class="line">4.18.0-15-generic</span><br></pre></td></tr></table></figure><br>  b.更新<code>apt</code>包:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure><br>  c.确保<code>apt</code>源不被篡改，使用<code>https</code>.因此，首先需要添加使用<code>https</code>传输的软件包以及CA证书.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install \</span><br><span class="line">apt-transport-https \</span><br><span class="line">ca-certificates \</span><br><span class="line">curl \</span><br><span class="line">gnupg-agent \</span><br><span class="line">software-properties-common</span><br></pre></td></tr></table></figure><br>  d.为确认安装的软件包的合法性，需要添加软件源的GPG密钥.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure><br>  e.向source.list中添加Docker CE软件源:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo add-apt-repository \</span><br><span class="line">&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span><br><span class="line">$(lsb_release -cs) \</span><br><span class="line">stable&quot;</span><br></pre></td></tr></table></figure><br>  f.更新apt软件包缓存，并安装docker-ce:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install docker-ce</span><br></pre></td></tr></table></figure><br>  g.启动Docker CE:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl enable docker</span><br><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-建立Docker用户组"><a href="#4-建立Docker用户组" class="headerlink" title="4.建立Docker用户组"></a>4.建立<code>Docker</code>用户组</h3><p>  a.建立用户组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo groupadd docker</span><br></pre></td></tr></table></figure><br>  b.将当前用户加入到docker组中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo usermod -aG docker $USER</span><br></pre></td></tr></table></figure><br>  c.重启系统，进行如下测试.</p>
 <h3 id="5-测试Docker是否安装正确"><a href="#5-测试Docker是否安装正确" class="headerlink" title="5.测试Docker是否安装正确."></a>5.测试Docker是否安装正确.</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run hello-world</span><br></pre></td></tr></table></figure>
-<h3 id="6-更换镜像加速"><a href="#6-更换镜像加速" class="headerlink" title="6.更换镜像加速:"></a>6.更换镜像加速:</h3><p>a.在<code>/etc/docker/daemon.json</code>中写入如下内容（如果文件不存在请新建该文件）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;:[&quot;https://docker.mirrors.ustc.edu.cn&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>b.配置加速器之后，如果拉取镜像仍然十分缓慢，请手动检查加速器配置是否生效，在命令行执行 <code>docker info</code>，如果从结果中看到了如下内容，说明配置成功.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RegistryMirrors:</span><br><span class="line">https://docker.mirrors.ustc.edu.cn/</span><br></pre></td></tr></table></figure>
-<p>b.添加完docker国内加速后，需要重启docker服务.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service docker restart</span><br></pre></td></tr></table></figure>
+<h3 id="6-更换镜像加速"><a href="#6-更换镜像加速" class="headerlink" title="6.更换镜像加速:"></a>6.更换镜像加速:</h3><p>a.在<code>/etc/docker/daemon.json</code>中写入如下内容（如果文件不存在请新建该文件）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;:[&quot;https://docker.mirrors.ustc.edu.cn&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>b.配置加速器之后，如果拉取镜像仍然十分缓慢，请手动检查加速器配置是否生效，在命令行执行 <code>docker info</code>，如果从结果中看到了如下内容，说明配置成功.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RegistryMirrors:</span><br><span class="line">https://docker.mirrors.ustc.edu.cn/</span><br></pre></td></tr></table></figure><br>b.添加完docker国内加速后，需要重启docker服务.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service docker restart</span><br></pre></td></tr></table></figure></p>
 <h3 id="7-卸载Docker-CE"><a href="#7-卸载Docker-CE" class="headerlink" title="7.卸载Docker CE"></a>7.卸载Docker CE</h3><p>1.卸载Docker CE包.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get purge dpcker-ce</span><br></pre></td></tr></table></figure>
-<p>2.Images, containers, volumes, or customized configuration files on your host are not automatically removed. To delete all images, containers, and volumes:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rm -rf /var/lib/docker</span><br></pre></td></tr></table></figure>
-
+<p>2.Images, containers, volumes, or customized configuration files on your host are not automatically removed. To delete all images, containers, and volumes:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rm -rf /var/lib/docker</span><br></pre></td></tr></table></figure></p>
 <h2 id="二-使用镜像"><a href="#二-使用镜像" class="headerlink" title="二.使用镜像:"></a>二.使用镜像:</h2><p>当运行容器时，使用的镜像如果在本地中不存在，docker 就会自动从 docker 镜像仓库中下载，默认是从 Docker Hub 公共镜像源下载.</p>
 <ul>
 <li>管理和使用本地Docker 主机镜像</li>
@@ -452,7 +428,7 @@ height:50vh;
 <li>IMAGE ID: 镜像ID</li>
 <li>CREATED : 镜像创建 的时间</li>
 <li>SIZE: 镜像的大小<br>如果要使用版本为15.10的ubuntu系统镜像来运行容器时，命令如下:(如果你不指定一个镜像的版本标签，例如你只使用 ubuntu，docker 将默认使用 ubuntu:latest 镜像)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -t -i --rm ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure>
-(参数说明：–rm：这个参数是说容器退出后随之将其删除。默认情况下，退出的容器并不会立即删除，除非手动 docker rm。我们这里只是随便执行个命令，看看结果，不需要排障和保留结果，因此使用 –rm 可以避免浪费空间。注意删除的是容器，不是镜像）<br><img src="/img/dcoker-container.png" alt="dcoker-container"></li>
+(参数说明：—rm：这个参数是说容器退出后随之将其删除。默认情况下，退出的容器并不会立即删除，除非手动 docker rm。我们这里只是随便执行个命令，看看结果，不需要排障和保留结果，因此使用 –rm 可以避免浪费空间。注意删除的是容器，不是镜像）<br><img src="/img/dcoker-container.png" alt="dcoker-container"></li>
 </ul>
 <h3 id="2-获取一个新的镜像"><a href="#2-获取一个新的镜像" class="headerlink" title="2.获取一个新的镜像:"></a>2.获取一个新的镜像:</h3><p>当我们在本地主机上使用一个不存在的镜像时 Docker 就会自动下载这个镜像。如果我们想预先下载这个镜像，我们可以使用 docker pull 命令来下载它.下载完成后，我们可以直接使用这个镜像来运行容器。</p>
 <h3 id="3-查找镜像"><a href="#3-查找镜像" class="headerlink" title="3.查找镜像:"></a>3.查找镜像:</h3><p>我们可以从 Docker Hub 网站来搜索镜像，Docker Hub 网址为： <a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com/</a><br>我们也可以使用 docker search 命令来搜索镜像。比如我们需要一个httpd的镜像来作为我们的web服务。我们可以通过 docker search 命令搜索 httpd 来寻找适合我们的镜像。</p>
@@ -464,11 +440,7 @@ height:50vh;
 <li>从已经创建的容器模板中更新镜像，并且提交这个镜像</li>
 <li>使用 Dockerfile指令来创建一个新的镜像</li>
 </ul>
-<p>1.更新镜像<br>更新镜像之前，需要使用镜像来创建一个容器.在运行的容器内使用 apt-get update 命令进行更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mx@ly:~$ docker run -i -t --rm ubuntu:18.04 /bin/bash</span><br><span class="line">root@4a3e9808b0bd:/# apt-get update</span><br></pre></td></tr></table></figure>
-<p>在完成操作之后，输入 exit命令来退出这个容器。<br>此时ID为e218edb10161的容器，是按我们的需求更改的容器。我们可以通过命令 docker commit来提交容器副本。之后便可以使用我们的新镜像 mx 来启动一个容器.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mx@ly:~$ docker commit -m &quot;update&quot; -a &quot;mx&quot; 7e7ad444e888 mx&gt;ubuntu</span><br></pre></td></tr></table></figure>
-<p>各个参数的说明:</p>
+<p>1.更新镜像<br>更新镜像之前，需要使用镜像来创建一个容器.在运行的容器内使用 apt-get update 命令进行更新<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mx@ly:~$ docker run -i -t --rm ubuntu:18.04 /bin/bash</span><br><span class="line">root@4a3e9808b0bd:/# apt-get update</span><br></pre></td></tr></table></figure><br>在完成操作之后，输入 exit命令来退出这个容器。<br>此时ID为e218edb10161的容器，是按我们的需求更改的容器。我们可以通过命令 docker commit来提交容器副本。之后便可以使用我们的新镜像 mx 来启动一个容器.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mx@ly:~$ docker commit -m &quot;update&quot; -a &quot;mx&quot; 7e7ad444e888 mx&gt;ubuntu</span><br></pre></td></tr></table></figure><br>各个参数的说明:</p>
 <ul>
 <li>-m: 提交的描述信息</li>
 <li>-a: 制定镜像作者</li>
@@ -850,12 +822,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" >算法导论</a>
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/" >编译技术</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/" >编译技术</a>
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" >算法导论</a>
         </li>
     
     
@@ -893,17 +865,17 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="AJAX"><span class="iconfont-archer">&#xe606;</span>AJAX</span>
-    
-        <span class="sidebar-tag-name" data-tags="linux命令集"><span class="iconfont-archer">&#xe606;</span>linux命令集</span>
-    
-        <span class="sidebar-tag-name" data-tags="android 开发"><span class="iconfont-archer">&#xe606;</span>android 开发</span>
-    
         <span class="sidebar-tag-name" data-tags="计算机"><span class="iconfont-archer">&#xe606;</span>计算机</span>
     
         <span class="sidebar-tag-name" data-tags="信息安全"><span class="iconfont-archer">&#xe606;</span>信息安全</span>
     
         <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
+    
+        <span class="sidebar-tag-name" data-tags="AJAX"><span class="iconfont-archer">&#xe606;</span>AJAX</span>
+    
+        <span class="sidebar-tag-name" data-tags="android 开发"><span class="iconfont-archer">&#xe606;</span>android 开发</span>
+    
+        <span class="sidebar-tag-name" data-tags="linux命令集"><span class="iconfont-archer">&#xe606;</span>linux命令集</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
@@ -921,21 +893,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="post"><span class="iconfont-archer">&#xe606;</span>post</span>
     
+        <span class="sidebar-tag-name" data-tags="AI"><span class="iconfont-archer">&#xe606;</span>AI</span>
+    
+        <span class="sidebar-tag-name" data-tags="多元线性回归"><span class="iconfont-archer">&#xe606;</span>多元线性回归</span>
+    
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="writeup"><span class="iconfont-archer">&#xe606;</span>writeup</span>
     
-        <span class="sidebar-tag-name" data-tags="算法实现"><span class="iconfont-archer">&#xe606;</span>算法实现</span>
-    
-        <span class="sidebar-tag-name" data-tags="AI"><span class="iconfont-archer">&#xe606;</span>AI</span>
-    
-        <span class="sidebar-tag-name" data-tags="多元线性回归"><span class="iconfont-archer">&#xe606;</span>多元线性回归</span>
-    
         <span class="sidebar-tag-name" data-tags="编译技术"><span class="iconfont-archer">&#xe606;</span>编译技术</span>
     
         <span class="sidebar-tag-name" data-tags="程序设计"><span class="iconfont-archer">&#xe606;</span>程序设计</span>
+    
+        <span class="sidebar-tag-name" data-tags="算法实现"><span class="iconfont-archer">&#xe606;</span>算法实现</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -970,39 +942,39 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="基础知识"><span class="iconfont-archer">&#xe60a;</span>基础知识</span>
+        <span class="sidebar-category-name" data-categories="计算机"><span class="iconfont-archer">&#xe60a;</span>计算机</span>
     
-        <span class="sidebar-category-name" data-categories="linux"><span class="iconfont-archer">&#xe60a;</span>linux</span>
+        <span class="sidebar-category-name" data-categories="基础知识"><span class="iconfont-archer">&#xe60a;</span>基础知识</span>
     
         <span class="sidebar-category-name" data-categories="简单计算器开发"><span class="iconfont-archer">&#xe60a;</span>简单计算器开发</span>
     
-        <span class="sidebar-category-name" data-categories="计算机"><span class="iconfont-archer">&#xe60a;</span>计算机</span>
+        <span class="sidebar-category-name" data-categories="linux"><span class="iconfont-archer">&#xe60a;</span>linux</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/信息安全"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/PHP"><span class="iconfont-archer">&#xe60a;</span>计算机/PHP</span>
     
         <span class="sidebar-category-name" data-categories="基础知识/AJAX"><span class="iconfont-archer">&#xe60a;</span>基础知识/AJAX</span>
-    
-        <span class="sidebar-category-name" data-categories="linux/命令集"><span class="iconfont-archer">&#xe60a;</span>linux/命令集</span>
     
         <span class="sidebar-category-name" data-categories="VLC"><span class="iconfont-archer">&#xe60a;</span>VLC</span>
     
         <span class="sidebar-category-name" data-categories="计算机/flask"><span class="iconfont-archer">&#xe60a;</span>计算机/flask</span>
     
+        <span class="sidebar-category-name" data-categories="AI"><span class="iconfont-archer">&#xe60a;</span>AI</span>
+    
         <span class="sidebar-category-name" data-categories="信息安全"><span class="iconfont-archer">&#xe60a;</span>信息安全</span>
     
-        <span class="sidebar-category-name" data-categories="计算机/信息安全"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全</span>
-    
-        <span class="sidebar-category-name" data-categories="AI"><span class="iconfont-archer">&#xe60a;</span>AI</span>
+        <span class="sidebar-category-name" data-categories="linux/命令集"><span class="iconfont-archer">&#xe60a;</span>linux/命令集</span>
     
         <span class="sidebar-category-name" data-categories="大三上学期课程"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程</span>
     
-        <span class="sidebar-category-name" data-categories="算法程序设计"><span class="iconfont-archer">&#xe60a;</span>算法程序设计</span>
-    
-        <span class="sidebar-category-name" data-categories="计算机/PHP"><span class="iconfont-archer">&#xe60a;</span>计算机/PHP</span>
-    
-        <span class="sidebar-category-name" data-categories="信息安全/CTF"><span class="iconfont-archer">&#xe60a;</span>信息安全/CTF</span>
-    
         <span class="sidebar-category-name" data-categories="计算机/信息安全/Docker"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全/Docker</span>
     
+        <span class="sidebar-category-name" data-categories="算法程序设计"><span class="iconfont-archer">&#xe60a;</span>算法程序设计</span>
+    
         <span class="sidebar-category-name" data-categories="AI/多元线性回归"><span class="iconfont-archer">&#xe60a;</span>AI/多元线性回归</span>
+    
+        <span class="sidebar-category-name" data-categories="信息安全/CTF"><span class="iconfont-archer">&#xe60a;</span>信息安全/CTF</span>
     
         <span class="sidebar-category-name" data-categories="大三上学期课程/编译技术"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程/编译技术</span>
     
@@ -1045,7 +1017,24 @@ jsonContent:
     
         <script src="/scripts/share.js" async></script>    
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
 </html>
 
 

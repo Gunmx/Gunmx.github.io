@@ -274,7 +274,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">840</span>Reading time: <span class="post-count reading-time">3 min</span></span>
+                        <span>Word count: <span class="post-count word-count">833</span>Reading time: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -403,14 +403,20 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>一.预备知识：<br>假定输入数据存放在矩阵X中，结果存放在向量y中：<br>$$X=\begin{bmatrix}<br>x_{11}&amp;x_{12}&amp;x_{13}\<br>x_{21}&amp;x_{22}&amp;x_{23}\<br>x_{31}&amp;x_{32}&amp;x_{33}\<br>\end{bmatrix},y=\begin{bmatrix}y_1\y_2\y_3\\end{bmatrix}而回归系数放在w中</p>
-<p>w=\begin{bmatrix}w_1\w_2\w_3\\end{bmatrix}$$<br>那么对于给定的数据x1，即矩阵X的第一列数据，预测结果u1将会通过如下公式给出：<br>$$u1={\begin{bmatrix}x_{11}\x_{21}\x_{31}\end{bmatrix}}^T*\begin{bmatrix}w_1\w_2\w_3\end{bmatrix}$$<br>现在的问题是，手里有数据矩阵X和对应的标签向量y，怎么才能找到w呢？<br>一个常用的方法就是找出使误差最小的w。这里的误差是指预测u值和真实y值之间的差值，使用该误差的简单累加将使得正差值和负差值相互抵消，所以我们采用平方误差。<br>平方误差和可以写做：<br>$$\sum_{i=1}^m{(y_i-{x_i}^Tw)}^2,用矩阵表示还可以写作:<br>{(y-Xw)}^T(y-Xw)$$<br>在继续推导之前，先明确一个目的：找到w，使平方误差和最小。因为我们认为平方误差和越小，说明线性回归拟合效果越好。<br>现在，我们用矩阵表示的平方误差和对w进行求导，并令其等于0，得到：<br>$$\widehat {w}=(X^TX)^{-1}X^Ty$$<br>w上方的小标记表示，这是当前可以估计出的w的最优解。从现有数据上估计出的w可能并不是数据中的真实w值，所以这里使用了一个”帽”符号来表示它仅是w的一个最佳估计。<br>需要注意的是，上述公式中包含逆矩阵，也就是说，这个方程只在逆矩阵存在的时候使用，也即是这个矩阵是一个方阵，并且其行列式不为0。</p>
-<p>二.代码实现:<br>1.数据可视化:<br>showData.py代码实现:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">(fileName)</span>:</span></span><br><span class="line">    numFeat=len(open(fileName).readline().split(<span class="string">'\t'</span>))<span class="number">-1</span> <span class="comment">#读取第一行数据</span></span><br><span class="line">    xArr=[]</span><br><span class="line">    yArr=[]</span><br><span class="line">    fr=open(fileName)</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</span><br><span class="line">        lineArr=[]</span><br><span class="line">        curLine=line.strip().split(<span class="string">'\t'</span>) <span class="comment">#去掉开头结尾的空白(包括空格和换行符)，最后返回长度为numFeat的列表；</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        ['1.0','0.067732','2.0']</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(numFeat):</span><br><span class="line">            lineArr.append(float(curLine[i])) <span class="comment">#[1.0,0.067732]</span></span><br><span class="line">        xArr.append(list(lineArr))</span><br><span class="line">        yArr.append(float(curLine[<span class="number">-1</span>]))</span><br><span class="line">    <span class="keyword">return</span> xArr,yArr</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plotDataSet</span><span class="params">()</span>:</span></span><br><span class="line">    xArr,yArr=loadDataSet(<span class="string">'exo.txt'</span>)</span><br><span class="line">    n=len(xArr)</span><br><span class="line">    xcord=[]</span><br><span class="line">    ycord=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        xcord.append(xArr[i][<span class="number">1</span>])</span><br><span class="line">        ycord.append(yArr[i])</span><br><span class="line">    fig=plt.figure()</span><br><span class="line">    ax=fig.add_subplot(<span class="number">111</span>)</span><br><span class="line">    ax.scatter(xcord,ycord,s=<span class="number">20</span>,c=<span class="string">'green'</span>,alpha=<span class="number">0.5</span>)</span><br><span class="line">    plt.title(<span class="string">"dataSet"</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    plotDataSet()</span><br></pre></td></tr></table></figure>
-<p>可视化结果:<br><img src="/img/dataSet.png" alt="dataSet"></p>
-<p>三.线性回归预测:<br>代码实现:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">(file_name)</span>:</span></span><br><span class="line">    numFeat=len(open(file_name).readline().split(<span class="string">'\t'</span>))<span class="number">-1</span></span><br><span class="line">    data_mat=[];label_mat=[]</span><br><span class="line">    fr=open(file_name)</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</span><br><span class="line">        lineArr=[]</span><br><span class="line">        curLine=line.strip().split(<span class="string">'\t'</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(numFeat):</span><br><span class="line">            lineArr.append(float(curLine[i]))</span><br><span class="line">        data_mat.append(lineArr)</span><br><span class="line">        label_mat.append(float(curLine[<span class="number">-1</span>]))</span><br><span class="line">    <span class="keyword">return</span> data_mat,label_mat</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">standRegres</span><span class="params">(xArr,yArr)</span>:</span></span><br><span class="line">    x_mat=mat(xArr);y_mat=mat(yArr).T</span><br><span class="line">    XTX=x_mat.T*x_mat</span><br><span class="line">    <span class="keyword">if</span> linalg.det(XTX)==<span class="number">0.0</span>:</span><br><span class="line">        print(<span class="string">'gaijuzhenbukeni'</span>)</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    ws=XTX.I*(x_mat.T*y_mat)</span><br><span class="line">    <span class="keyword">return</span> ws</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_linear_regre</span><span class="params">()</span>:</span></span><br><span class="line">    xArr,yArr=loadDataSet(<span class="string">'exO.txt'</span>)</span><br><span class="line">    ws=standRegres(xArr, yArr)</span><br><span class="line">    x_mat=mat(xArr);y_mat=mat(yArr)</span><br><span class="line">    y_Hat=x_mat*ws</span><br><span class="line">    fig=plt.figure()</span><br><span class="line">    ax=fig.add_subplot(<span class="number">111</span>)</span><br><span class="line">    ax.scatter(x_mat[:,<span class="number">1</span>].flatten().A[<span class="number">0</span>],y_mat.T[:,<span class="number">0</span>].flatten().A[<span class="number">0</span>])</span><br><span class="line">    </span><br><span class="line">    xCopy=x_mat.copy()</span><br><span class="line">    xCopy.sort(<span class="number">0</span>)</span><br><span class="line">    y_Hat=xCopy*ws</span><br><span class="line">    ax.plot(xCopy[:,<span class="number">1</span>],y_Hat,c=<span class="string">'red'</span>)</span><br><span class="line">    plt.title(<span class="string">'DataSet'</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'x'</span>) </span><br><span class="line">    plt.show()         </span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    show_linear_regre()</span><br></pre></td></tr></table></figure>
-<p>可视化结果:<br><a href="/img/线性回归.png">!线性回归预测</a></p>
+        <p>一.预备知识：<br>假定输入数据存放在矩阵X中，结果存放在向量y中：</p>
+<script type="math/tex; mode=display">X=\begin{bmatrix}
+x_{11}&x_{12}&x_{13}\\
+x_{21}&x_{22}&x_{23}\\
+x_{31}&x_{32}&x_{33}\\
+\end{bmatrix},y=\begin{bmatrix}y_1\\y_2\\y_3\\\end{bmatrix}而回归系数放在w中
+
+w=\begin{bmatrix}w_1\\w_2\\w_3\\\end{bmatrix}</script><p>那么对于给定的数据x1，即矩阵X的第一列数据，预测结果u1将会通过如下公式给出：</p>
+<script type="math/tex; mode=display">u1={\begin{bmatrix}x_{11}\\x_{21}\\x_{31}\end{bmatrix}}^T*\begin{bmatrix}w_1\\w_2\\w_3\end{bmatrix}</script><p>现在的问题是，手里有数据矩阵X和对应的标签向量y，怎么才能找到w呢？<br>一个常用的方法就是找出使误差最小的w。这里的误差是指预测u值和真实y值之间的差值，使用该误差的简单累加将使得正差值和负差值相互抵消，所以我们采用平方误差。<br>平方误差和可以写做：</p>
+<script type="math/tex; mode=display">\sum_{i=1}^m{(y_i-{x_i}^Tw)}^2,用矩阵表示还可以写作:
+{(y-Xw)}^T(y-Xw)</script><p>在继续推导之前，先明确一个目的：找到w，使平方误差和最小。因为我们认为平方误差和越小，说明线性回归拟合效果越好。<br>现在，我们用矩阵表示的平方误差和对w进行求导，并令其等于0，得到：</p>
+<script type="math/tex; mode=display">\widehat {w}=(X^TX)^{-1}X^Ty</script><p>w上方的小标记表示，这是当前可以估计出的w的最优解。从现有数据上估计出的w可能并不是数据中的真实w值，所以这里使用了一个”帽”符号来表示它仅是w的一个最佳估计。<br>需要注意的是，上述公式中包含逆矩阵，也就是说，这个方程只在逆矩阵存在的时候使用，也即是这个矩阵是一个方阵，并且其行列式不为0。</p>
+<p>二.代码实现:<br>1.数据可视化:<br>showData.py代码实现:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">(fileName)</span>:</span></span><br><span class="line">    numFeat=len(open(fileName).readline().split(<span class="string">'\t'</span>))<span class="number">-1</span> <span class="comment">#读取第一行数据</span></span><br><span class="line">    xArr=[]</span><br><span class="line">    yArr=[]</span><br><span class="line">    fr=open(fileName)</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</span><br><span class="line">        lineArr=[]</span><br><span class="line">        curLine=line.strip().split(<span class="string">'\t'</span>) <span class="comment">#去掉开头结尾的空白(包括空格和换行符)，最后返回长度为numFeat的列表；</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        ['1.0','0.067732','2.0']</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(numFeat):</span><br><span class="line">            lineArr.append(float(curLine[i])) <span class="comment">#[1.0,0.067732]</span></span><br><span class="line">        xArr.append(list(lineArr))</span><br><span class="line">        yArr.append(float(curLine[<span class="number">-1</span>]))</span><br><span class="line">    <span class="keyword">return</span> xArr,yArr</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plotDataSet</span><span class="params">()</span>:</span></span><br><span class="line">    xArr,yArr=loadDataSet(<span class="string">'exo.txt'</span>)</span><br><span class="line">    n=len(xArr)</span><br><span class="line">    xcord=[]</span><br><span class="line">    ycord=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        xcord.append(xArr[i][<span class="number">1</span>])</span><br><span class="line">        ycord.append(yArr[i])</span><br><span class="line">    fig=plt.figure()</span><br><span class="line">    ax=fig.add_subplot(<span class="number">111</span>)</span><br><span class="line">    ax.scatter(xcord,ycord,s=<span class="number">20</span>,c=<span class="string">'green'</span>,alpha=<span class="number">0.5</span>)</span><br><span class="line">    plt.title(<span class="string">"dataSet"</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">    plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    plotDataSet()</span><br></pre></td></tr></table></figure><br>可视化结果:<br><img src="/img/dataSet.png" alt="dataSet"></p>
+<p>三.线性回归预测:<br>代码实现:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">(file_name)</span>:</span></span><br><span class="line">    numFeat=len(open(file_name).readline().split(<span class="string">'\t'</span>))<span class="number">-1</span></span><br><span class="line">    data_mat=[];label_mat=[]</span><br><span class="line">    fr=open(file_name)</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</span><br><span class="line">        lineArr=[]</span><br><span class="line">        curLine=line.strip().split(<span class="string">'\t'</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(numFeat):</span><br><span class="line">            lineArr.append(float(curLine[i]))</span><br><span class="line">        data_mat.append(lineArr)</span><br><span class="line">        label_mat.append(float(curLine[<span class="number">-1</span>]))</span><br><span class="line">    <span class="keyword">return</span> data_mat,label_mat</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">standRegres</span><span class="params">(xArr,yArr)</span>:</span></span><br><span class="line">    x_mat=mat(xArr);y_mat=mat(yArr).T</span><br><span class="line">    XTX=x_mat.T*x_mat</span><br><span class="line">    <span class="keyword">if</span> linalg.det(XTX)==<span class="number">0.0</span>:</span><br><span class="line">        print(<span class="string">'gaijuzhenbukeni'</span>)</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    ws=XTX.I*(x_mat.T*y_mat)</span><br><span class="line">    <span class="keyword">return</span> ws</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_linear_regre</span><span class="params">()</span>:</span></span><br><span class="line">    xArr,yArr=loadDataSet(<span class="string">'exO.txt'</span>)</span><br><span class="line">    ws=standRegres(xArr, yArr)</span><br><span class="line">    x_mat=mat(xArr);y_mat=mat(yArr)</span><br><span class="line">    y_Hat=x_mat*ws</span><br><span class="line">    fig=plt.figure()</span><br><span class="line">    ax=fig.add_subplot(<span class="number">111</span>)</span><br><span class="line">    ax.scatter(x_mat[:,<span class="number">1</span>].flatten().A[<span class="number">0</span>],y_mat.T[:,<span class="number">0</span>].flatten().A[<span class="number">0</span>])</span><br><span class="line">    </span><br><span class="line">    xCopy=x_mat.copy()</span><br><span class="line">    xCopy.sort(<span class="number">0</span>)</span><br><span class="line">    y_Hat=xCopy*ws</span><br><span class="line">    ax.plot(xCopy[:,<span class="number">1</span>],y_Hat,c=<span class="string">'red'</span>)</span><br><span class="line">    plt.title(<span class="string">'DataSet'</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'x'</span>) </span><br><span class="line">    plt.show()         </span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    show_linear_regre()</span><br></pre></td></tr></table></figure><br>可视化结果:<br><a href="/img/线性回归.png">!线性回归预测</a></p>
 
     </article>
     <!-- license  -->
@@ -785,12 +791,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" >算法导论</a>
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/" >编译技术</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%BC%96%E8%AF%91%E6%8A%80%E6%9C%AF/" >编译技术</a>
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2019/08/29/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" >算法导论</a>
         </li>
     
     
@@ -828,17 +834,17 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="AJAX"><span class="iconfont-archer">&#xe606;</span>AJAX</span>
-    
-        <span class="sidebar-tag-name" data-tags="linux命令集"><span class="iconfont-archer">&#xe606;</span>linux命令集</span>
-    
-        <span class="sidebar-tag-name" data-tags="android 开发"><span class="iconfont-archer">&#xe606;</span>android 开发</span>
-    
         <span class="sidebar-tag-name" data-tags="计算机"><span class="iconfont-archer">&#xe606;</span>计算机</span>
     
         <span class="sidebar-tag-name" data-tags="信息安全"><span class="iconfont-archer">&#xe606;</span>信息安全</span>
     
         <span class="sidebar-tag-name" data-tags="Docker"><span class="iconfont-archer">&#xe606;</span>Docker</span>
+    
+        <span class="sidebar-tag-name" data-tags="AJAX"><span class="iconfont-archer">&#xe606;</span>AJAX</span>
+    
+        <span class="sidebar-tag-name" data-tags="android 开发"><span class="iconfont-archer">&#xe606;</span>android 开发</span>
+    
+        <span class="sidebar-tag-name" data-tags="linux命令集"><span class="iconfont-archer">&#xe606;</span>linux命令集</span>
     
         <span class="sidebar-tag-name" data-tags="PHP"><span class="iconfont-archer">&#xe606;</span>PHP</span>
     
@@ -856,21 +862,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="post"><span class="iconfont-archer">&#xe606;</span>post</span>
     
+        <span class="sidebar-tag-name" data-tags="AI"><span class="iconfont-archer">&#xe606;</span>AI</span>
+    
+        <span class="sidebar-tag-name" data-tags="多元线性回归"><span class="iconfont-archer">&#xe606;</span>多元线性回归</span>
+    
         <span class="sidebar-tag-name" data-tags="CTF"><span class="iconfont-archer">&#xe606;</span>CTF</span>
     
         <span class="sidebar-tag-name" data-tags="web"><span class="iconfont-archer">&#xe606;</span>web</span>
     
         <span class="sidebar-tag-name" data-tags="writeup"><span class="iconfont-archer">&#xe606;</span>writeup</span>
     
-        <span class="sidebar-tag-name" data-tags="算法实现"><span class="iconfont-archer">&#xe606;</span>算法实现</span>
-    
-        <span class="sidebar-tag-name" data-tags="AI"><span class="iconfont-archer">&#xe606;</span>AI</span>
-    
-        <span class="sidebar-tag-name" data-tags="多元线性回归"><span class="iconfont-archer">&#xe606;</span>多元线性回归</span>
-    
         <span class="sidebar-tag-name" data-tags="编译技术"><span class="iconfont-archer">&#xe606;</span>编译技术</span>
     
         <span class="sidebar-tag-name" data-tags="程序设计"><span class="iconfont-archer">&#xe606;</span>程序设计</span>
+    
+        <span class="sidebar-tag-name" data-tags="算法实现"><span class="iconfont-archer">&#xe606;</span>算法实现</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -905,39 +911,39 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="基础知识"><span class="iconfont-archer">&#xe60a;</span>基础知识</span>
+        <span class="sidebar-category-name" data-categories="计算机"><span class="iconfont-archer">&#xe60a;</span>计算机</span>
     
-        <span class="sidebar-category-name" data-categories="linux"><span class="iconfont-archer">&#xe60a;</span>linux</span>
+        <span class="sidebar-category-name" data-categories="基础知识"><span class="iconfont-archer">&#xe60a;</span>基础知识</span>
     
         <span class="sidebar-category-name" data-categories="简单计算器开发"><span class="iconfont-archer">&#xe60a;</span>简单计算器开发</span>
     
-        <span class="sidebar-category-name" data-categories="计算机"><span class="iconfont-archer">&#xe60a;</span>计算机</span>
+        <span class="sidebar-category-name" data-categories="linux"><span class="iconfont-archer">&#xe60a;</span>linux</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/信息安全"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全</span>
+    
+        <span class="sidebar-category-name" data-categories="计算机/PHP"><span class="iconfont-archer">&#xe60a;</span>计算机/PHP</span>
     
         <span class="sidebar-category-name" data-categories="基础知识/AJAX"><span class="iconfont-archer">&#xe60a;</span>基础知识/AJAX</span>
-    
-        <span class="sidebar-category-name" data-categories="linux/命令集"><span class="iconfont-archer">&#xe60a;</span>linux/命令集</span>
     
         <span class="sidebar-category-name" data-categories="VLC"><span class="iconfont-archer">&#xe60a;</span>VLC</span>
     
         <span class="sidebar-category-name" data-categories="计算机/flask"><span class="iconfont-archer">&#xe60a;</span>计算机/flask</span>
     
+        <span class="sidebar-category-name" data-categories="AI"><span class="iconfont-archer">&#xe60a;</span>AI</span>
+    
         <span class="sidebar-category-name" data-categories="信息安全"><span class="iconfont-archer">&#xe60a;</span>信息安全</span>
     
-        <span class="sidebar-category-name" data-categories="计算机/信息安全"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全</span>
-    
-        <span class="sidebar-category-name" data-categories="AI"><span class="iconfont-archer">&#xe60a;</span>AI</span>
+        <span class="sidebar-category-name" data-categories="linux/命令集"><span class="iconfont-archer">&#xe60a;</span>linux/命令集</span>
     
         <span class="sidebar-category-name" data-categories="大三上学期课程"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程</span>
     
-        <span class="sidebar-category-name" data-categories="算法程序设计"><span class="iconfont-archer">&#xe60a;</span>算法程序设计</span>
-    
-        <span class="sidebar-category-name" data-categories="计算机/PHP"><span class="iconfont-archer">&#xe60a;</span>计算机/PHP</span>
-    
-        <span class="sidebar-category-name" data-categories="信息安全/CTF"><span class="iconfont-archer">&#xe60a;</span>信息安全/CTF</span>
-    
         <span class="sidebar-category-name" data-categories="计算机/信息安全/Docker"><span class="iconfont-archer">&#xe60a;</span>计算机/信息安全/Docker</span>
     
+        <span class="sidebar-category-name" data-categories="算法程序设计"><span class="iconfont-archer">&#xe60a;</span>算法程序设计</span>
+    
         <span class="sidebar-category-name" data-categories="AI/多元线性回归"><span class="iconfont-archer">&#xe60a;</span>AI/多元线性回归</span>
+    
+        <span class="sidebar-category-name" data-categories="信息安全/CTF"><span class="iconfont-archer">&#xe60a;</span>信息安全/CTF</span>
     
         <span class="sidebar-category-name" data-categories="大三上学期课程/编译技术"><span class="iconfont-archer">&#xe60a;</span>大三上学期课程/编译技术</span>
     
@@ -980,7 +986,24 @@ jsonContent:
     
         <script src="/scripts/share.js" async></script>    
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
 </html>
 
 
