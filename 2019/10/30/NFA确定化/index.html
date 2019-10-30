@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Gun&#39;s Blog</title>
+    <title>NFA确定化 · Gun&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Gun&#39;s Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">NFA确定化</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Gun's Blog</a>
 </header>
@@ -220,24 +231,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            NFA确定化
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "编译原理">编译原理</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "NFA确定化实验">NFA确定化实验</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">501</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/10/30</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,40 +401,74 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/29/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" >
-            
-                <span>算法导论</span>
-        </a>
-        <div class="abstract-content">
-            emmm,我太难了，最后还是没能写对，自己的思路:
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121/*3 2A 10 100B 5...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法实现">算法实现</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="一-实验目的"><a href="#一-实验目的" class="headerlink" title="一.实验目的"></a>一.实验目的</h2><ul>
+<li>(1) 加深对NFA确定化算法的熟悉程度</li>
+<li>(2) 进一步理解高级语言在计算机中的执行过程, 加深对编译原理中重点算法和编译技术的理解, 提高自己的编程能力, 掌握将NFA转换为与之等价的DFA的算法。</li>
+</ul>
+<h2 id="二-实验内容"><a href="#二-实验内容" class="headerlink" title="二.实验内容"></a>二.实验内容</h2><p>通过设计编写和调试将不确定的有穷自动机转换为与之等价的确定的有穷自动机的程序,掌握转换过程中的相关概念和方法。</p>
+<ul>
+<li>input NFA </li>
+<li>output 与之等价的DFA </li>
+</ul>
+<h2 id="三-实验原理"><a href="#三-实验原理" class="headerlink" title="三.实验原理"></a>三.实验原理</h2><p>算法描述：</p>
+<ul>
+<li>(1) 若p是NFA的初态，则DFA的初态为$A=\epsilon-closure({p})$；</li>
+<li>(2) 对NFA中的每一个箭弧标记m，计算$\epsilon-closure(f(q,m))$,其中q是已经生成了的DFA状态。即遍历字母表的每个字符作为输入，例如字母表${a,b}$,则$B=\epsilon-closure(f(A,a))$,$C=\epsilon-closure(f(A,b))$. 若B,C不是空集, $D=\epsilon-closure(f(B,a))$,$E=\epsilon-closure(f(B,b))$重复这一个过程. 直到不在出现新的状态集合.</li>
+<li>(3) 重新命名DFA中的状态，并修改其他项.</li>
+<li>(4) DFA M的初态为原NFA M’初始状态的子集，终态为原终止状态的子集.</li>
+</ul>
+<h2 id="四-实现方法"><a href="#四-实现方法" class="headerlink" title="四.实现方法"></a>四.实现方法</h2><ul>
+<li>构造NFA的输入格式：<blockquote>
+<p>主要是NFA M的状态转移函数的输入:</p>
+<blockquote>
+<p>$f=[{‘e’:[1,7]},{‘e’:[2,4]},{‘a’:[3]},{‘e’:[6]},{‘b’:[5]},{‘e’:[6]},{‘e’:[7,1]},{‘a’:[8]},{‘b’:[9]},{‘b’:[10]},{}]$<br>上述输入的转移函数的含义: 以l<code>python</code>中的<code>list</code>的索引映射到NFA M的j节点，每个列表项对应的是状态转移函数的关系. 例如，上述状态转移函数 f 中<code>python</code>列表第一项的索引为0,字典 的值为${‘e’:[1:7]}$表示的是：0节点识别e后转移到1号和7号节点.最后<br>NFA M确定化后得到的状态转换函数也将以上述形式输出.</p>
+</blockquote>
+</blockquote>
+</li>
+<li><code>python</code>具体实现方法:</li>
+</ul>
+
     </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>Author：<a href="http://yoursite.com">菠萝吹雪</a>
+            <p>原文链接：<a href="http://yoursite.com/2019/10/30/NFA%E7%A1%AE%E5%AE%9A%E5%8C%96/">http://yoursite.com/2019/10/30/NFA%E7%A1%AE%E5%AE%9A%E5%8C%96/</a>
+            <p>发表日期：<a href="http://yoursite.com/2019/10/30/NFA%E7%A1%AE%E5%AE%9A%E5%8C%96/">October 30th 2019, 10:30:08 am</a>
+            <p>更新日期：<a href="http://yoursite.com/2019/10/30/NFA%E7%A1%AE%E5%AE%9A%E5%8C%96/">October 30th 2019, 11:49:27 am</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2019/09/22/%E8%AE%A1%E8%92%9C%E5%AE%A2/" title= "计蒜客">
+                    <div class="prevTitle">计蒜客</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -456,6 +553,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-实验目的"><span class="toc-number">1.</span> <span class="toc-text">一.实验目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-实验内容"><span class="toc-number">2.</span> <span class="toc-text">二.实验内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-实验原理"><span class="toc-number">3.</span> <span class="toc-text">三.实验原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-实现方法"><span class="toc-number">4.</span> <span class="toc-text">四.实现方法</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -877,6 +992,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

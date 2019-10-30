@@ -346,24 +346,37 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2019/08/29/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/" >
+        <a class="abstract-title" href = "/2019/10/30/NFA%E7%A1%AE%E5%AE%9A%E5%8C%96/" >
             
-                <span>算法导论</span>
+                <span>NFA确定化</span>
         </a>
         <div class="abstract-content">
-            emmm,我太难了，最后还是没能写对，自己的思路:
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121/*3 2A 10 100B 5...
+            一.实验目的
+(1) 加深对NFA确定化算法的熟悉程度
+(2) 进一步理解高级语言在计算机中的执行过程, 加深对编译原理中重点算法和编译技术的理解, 提高自己的编程能力, 掌握将NFA转换为与之等价的DFA的算法。
+
+二.实验内容通过设计编写和调试将不确定的有穷自动机转换为与之等价的确定的有穷自动机的程序,掌握转换过程中的相关概念和方法。
+
+input NFA 
+output 与之等价的DFA 
+
+三.实验原理算法描述：
+
+(1) 若p是NFA的初态，则DFA的初态为$A=\epsilon-closure({p})$；
+(2) 对NFA中的每一个箭弧标记m，计算$\epsilon-clo...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/08/29</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/30</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "算法实现">算法实现</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "编译原理">编译原理</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "NFA确定化实验">NFA确定化实验</a>
     
 </div>
             
