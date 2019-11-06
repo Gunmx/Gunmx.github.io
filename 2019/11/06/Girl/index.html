@@ -1,0 +1,118 @@
+
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+	<style type="text/css">
+		@font-face {
+			font-family: digit;
+			src: url('/Girl/digital-7_mono.ttf') format("truetype");
+		}
+		#girl{
+			border-radius:50%;
+	</style>
+<meta name="keywords" content="" />
+<meta name="description" content="" />	<link href="/css/default.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="/scripts/jquery.js"></script>
+	<script type="text/javascript" src="/scripts/garden.js"></script>
+    <script type="text/javascript" src="/scripts/functions.js"></script>
+</head> 
+<body>
+<!--下面是调用方法和参数说明-->
+	<script src="https://cdn.jsdelivr.net/gh/yremp/yremp-js@1.5/sakura.js"></script>
+	<div id="mainDiv">
+		<div id="content">
+			<div id="code">
+				<span class="comments"></span><br />
+				<span class="space"/><span class="comments"></span><br />
+				<span class="space"/><span class="comments"></span><br />
+				<span class="space"/><span class="comments"></span><br />
+				<img  id="girl" src= "/Girl/girl.jpg">
+				<span class="space"/><span class="comments"></span><br />
+				<span class="space"/><span class="comments"></span><br />
+				<span class="comments"> </span><br />
+				<span class="comments"></span><br />
+				<span class="comments"></span><br />
+				<span class="comments"><br />
+				<span class="comments"></span><br />
+				<span class="comments"></span><br />
+        		<span class="comments"></span><br />
+				<span class="comments"></span><br />
+        		<span class="comments"></span><br />
+				<br />
+				<span class="comments"></span><br />
+				<br />
+				<span class="comments"></span><br />
+				<br />
+				<span class="comments"></span><br />
+				<span class="comments"></span><br />
+				<span class="keyword"></span> <span class="keyword"></span>;<br />
+				<span class="keyword"></span>  <br />
+				<span class="placeholder"/><br />
+				<span class="placeholder"/><span class="comments"></span><br />
+				<span class="placeholder"/><span class="comments"></span><br />
+				<span class="placeholder"/><br /><br />
+			</div>
+			<div id="loveHeart">
+				<canvas id="garden"></canvas>
+				<div id="words">
+					<div id="messages">
+						        梨花诗：
+						<div id="elapseClock"></div>
+					</div>
+					<div id="loveu">
+						<div class="signature">--菠萝吹雪</div>
+					</div>
+				</div>
+				     </div>
+				</div>
+			</div>
+</div>
+	<div class="bg1">	
+		<div class="main">
+			<footer style="line-height:20px">
+                <div id="copyright">
+                     <a href='' target="_blank"></a> 
+                    <a href="" target="_blank"></a>
+                    <a href="" target="_blank"></a>
+                </object>
+                </div>
+		</div>
+	</div>
+</div>
+
+	<script type="text/javascript">
+		var offsetX = $("#loveHeart").width() / 2;
+		var offsetY = $("#loveHeart").height() / 2 - 55;
+		var together = new Date();
+		together.setFullYear(2018, 03, 30)
+		together.setHours(23);
+		together.setMinutes(55);
+		together.setSeconds(39);
+		together.setMilliseconds(0);
+		
+		if (!document.createElement('canvas').getContext) {
+			var msg = document.createElement("div");
+			msg.id = "errorMsg";
+			msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
+			document.body.appendChild(msg);
+			$("#code").css("display", "none")
+			$("#copyright").css("position", "absolute");
+			$("#copyright").css("bottom", "10px");
+		    document.execCommand("stop");
+		} else {
+			setTimeout(function () {
+				startHeartAnimation();
+			}, 5000);
+			timeElapse(together);
+			setInterval(function () {
+				timeElapse(together);
+			}, 500);
+			adjustCodePosition();
+			$("#code").typewriter();
+		}
+	</script>
+	<audio src="/Girl/dear.mp3" autoplay="autoplay" loop="loop" preload="auto" hidden="true" ></audio>
+</body>
+</html>
